@@ -57,8 +57,6 @@ If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda
 
 ### GPU Processing
 
-#### Install CUDA:
-
 Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) that compatible with your GPU.
 
 ## Running the tests
