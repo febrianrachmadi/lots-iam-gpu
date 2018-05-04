@@ -1,0 +1,6 @@
+conda create --name IAM_GPU_LINUX_mini python=3
+conda install matplotlib
+conda install numba
+conda install opencv
+pip install nibabel
+conda install scikit-image
