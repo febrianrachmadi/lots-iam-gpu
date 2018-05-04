@@ -36,6 +36,10 @@ Below is list of `.yml` files provided.
 1. [linux_iam_gpu_env_mini.yml](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_env_mini.yml): Environment (Linux) which contains minimum requirenments for LOTS-IAM-GPU.
 2. [linux_iam_gpu_jynb_env.yml](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_jynb_env.yml): Similar as Number 1 (Linux), plus Jupyter Notebook GUI kernel.
 
+To import the provided environments, you have two options:
+1. Download and install [Anaconda Navigator](https://www.anaconda.com/download/) if you need GUI to work on.
+2. Download and install [miniconda](https://conda.io/miniconda.html) if you do not need GUI to work on.
+
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
