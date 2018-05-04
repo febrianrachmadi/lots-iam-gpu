@@ -36,11 +36,13 @@ Below is list of `.yml` files provided.
 1. [linux_iam_gpu_env_mini.yml](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_env_mini.yml): Environment (Linux) which contains minimum requirenments for LOTS-IAM-GPU.
 2. [linux_iam_gpu_jynb_env.yml](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_jynb_env.yml): Similar as Number 1 (Linux), plus Jupyter Notebook GUI kernel.
 
-To import the provided environments, you have two options:
-1. Download and install [Anaconda Navigator](https://www.anaconda.com/download/) if you need GUI to work on.
-2. Download and install [miniconda](https://conda.io/miniconda.html) if you do not need GUI to work on.
+To use the provided environments, you have two options:
+1. Use [Anaconda Navigator](https://www.anaconda.com/download/) if you need GUI to work on. Please follow [these instructions](https://docs.anaconda.com/anaconda/install/) for detailed installation.
+2. Use [miniconda](https://conda.io/miniconda.html) if you do not need GUI to work on. Please follow [these instructions](https://conda.io/docs/user-guide/install/index.html) for detailed installation.
 
-End with an example of getting some data out of the system or using it for a little demo
+After installation of Anaconda/miniconda, you now can import the provided environtments by following these instructions:
+1. For Anaconda Navigator, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#importing-an-environment).
+2. For miniconda, please foolow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
 
 ## Running the tests
 
