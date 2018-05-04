@@ -16,6 +16,7 @@ The project is written in Python (3.6.5). Below is the list of minimum prerequis
 - [scikit-image (0.13.1)](http://scikit-image.org/): Required for computer vision operations.
 - [NiBabel (2.2.1)](http://nipy.org/nibabel/): Required for loading and writing NIFTI files.
 - [NumPy (1.14.2)](http://www.numpy.org/): General purpose array-processing package.
+- [Cuda Toolkit](https://developer.nvidia.com/cuda-downloads): CUDA Toolkit for parallel programming.
 
 ### Installation
 
@@ -25,9 +26,9 @@ Clone the project from:
 https://github.com/iboele/lots-iam-gpu
 ```
 
-After cloning the project, the dependencies can be installed as described below.
+After cloning the project, the dependencies can be installed as described in the next sections.
 
-#### Running on virtual environment of conda (Linux/Windows)
+### Running on virtual environment of conda (Linux/Windows)
 
 We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu/tree/master/environments) folder which can be used to activate a virtual environment for running LOTS-IAM-GPU in Linux/Windows.
 
@@ -50,9 +51,15 @@ After importing the environment file, you should be able to see the imported env
 1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#using-an-environment).
 2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment). Example: `source activate IAM_GPU_LINUX_mini`.
 
-By activating the provided environment, you should be able to run the project in ease. To deactivate (i.e. unload) an active environment running on terminal, call `source deactivate env_name`.
+By activating the provided environment, you should be able to run the project (if only if you have installed CUDA Toolkit in your machine). To deactivate (i.e. unload) an active environment running on terminal, call `source deactivate env_name`.
 
 If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
+
+### GPU Processing
+
+#### Install CUDA:
+
+Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) that compatible with your GPU.
 
 ## Running the tests
 
