@@ -33,8 +33,8 @@ We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu
 
 Below is list of `.yml` files provided.
 
-1. [linux_iam_gpu_env_mini.yml](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_env_mini.yml): Environment (Linux) which contains minimum requirenments for LOTS-IAM-GPU.
-2. [linux_iam_gpu_jynb_env.yml](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_jynb_env.yml): Similar as Number 1 (Linux), plus Jupyter Notebook GUI kernel.
+1. [IAM_GPU_LINUX_mini](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_env_mini.yml): Environment (Linux) which contains minimum requirenments for LOTS-IAM-GPU.
+2. [IAM_GPU_LINUX_jynb](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_jynb_env.yml): Similar as Number 1 (Linux), plus Jupyter Notebook GUI kernel.
 
 To use the provided environments, you have two options:
 1. Use [Anaconda Navigator](https://www.anaconda.com/download/) if you need GUI to work on. Please follow [these instructions](https://docs.anaconda.com/anaconda/install/) for detailed installation.
@@ -44,11 +44,11 @@ To use the provided environments, you have two options:
 
 After installation of Anaconda/miniconda, you now can import the provided environtments by following these instructions:
 1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#importing-an-environment).
-2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file). Example: `conda env create -f linux_iam_gpu_jynb_env.yml`
+2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file). Example: `conda env create -f linux_iam_gpu_jynb_env.yml`.
 
-After importing the environment file, you should be able to see the imported environment (in **Anaconda Navigator**, choose `Home > Applications on` or `Environments` while in **miniconda**, call `conda env list`). can now activate/deactivate (load/unload) it by folloing these instructions:
+After importing the environment file, you should be able to see the imported environment's name (in **Anaconda Navigator**, choose `Home > Applications on` or `Environments` tabs; while in **miniconda**, call `conda env list`). You now should be able to activate/deactivate (load/unload) it by folloing these instructions:
 1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#using-an-environment).
-2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment).
+2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment). Example: `source activate IAM_GPU_LINUX_mini`.
 
 By activating the provided environment, you should be able to run the project in ease.
 
