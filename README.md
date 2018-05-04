@@ -40,7 +40,7 @@ To use the provided environments, you have two options:
 1. Use [Anaconda Navigator](https://www.anaconda.com/download/) if you need GUI to work on. Please follow [these instructions](https://docs.anaconda.com/anaconda/install/) for detailed installation.
 2. Use [miniconda](https://conda.io/miniconda.html) if you do not need GUI to work on. Please follow [these instructions](https://conda.io/docs/user-guide/install/index.html) for detailed installation.
 
-**NOTE:** GUI workspace is provided by Jupyter Notebook which can be called via Anaconda Navigator's GUI or miniconda's command line by calling `jupyter notebook` after importing and activating the virtual environment. 
+**NOTE:** GUI workspace is provided by Jupyter Notebook which can be called by using either *Anaconda Navigator's GUI* or *miniconda*'s command line* (by calling `jupyter notebook` after importing and activating the virtual environment). 
 
 After installation of Anaconda/miniconda, you now can import the provided environtments by following these instructions:
 1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#importing-an-environment).
