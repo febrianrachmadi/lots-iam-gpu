@@ -55,7 +55,7 @@ By activating the provided environment, you should be able to run the project (i
 
 If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
 
-#### 1.2.2 Running on virtual environment of conda (Linux/Windows)
+#### 1.2.2 Running on your local machine (Linux)
 
 #### 1.3 GPU Processing
 
