@@ -41,8 +41,16 @@ To use the provided environments, you have two options:
 2. Use [miniconda](https://conda.io/miniconda.html) if you do not need GUI to work on. Please follow [these instructions](https://conda.io/docs/user-guide/install/index.html) for detailed installation.
 
 After installation of Anaconda/miniconda, you now can import the provided environtments by following these instructions:
-1. For Anaconda Navigator, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#importing-an-environment).
-2. For miniconda, please foolow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
+1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#importing-an-environment).
+2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
+
+After importing the environment file, you can now activate/deactivate (load/unload) it by folloing these instructions:
+1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#using-an-environment).
+2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment).
+
+By activating the provided environment, you should be able to run the project in ease.
+
+If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
 
 ## Running the tests
 
