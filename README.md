@@ -46,7 +46,7 @@ After installation of Anaconda/miniconda, you now can import the provided enviro
 1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#importing-an-environment).
 2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file). Example: `conda env create -f linux_iam_gpu_jynb_env.yml`
 
-After importing the environment file, you can now activate/deactivate (load/unload) it by folloing these instructions:
+After importing the environment file, you should be able to see the imported environment (in **Anaconda Navigator**, choose `Home > Applications on` or `Environments` while in **miniconda**, call `conda env list`). can now activate/deactivate (load/unload) it by folloing these instructions:
 1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#using-an-environment).
 2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment).
 
