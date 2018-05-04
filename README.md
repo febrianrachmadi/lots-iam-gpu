@@ -29,10 +29,12 @@ After cloning the project, the dependencies can be installed as described below.
 
 #### Running on virtual environment of conda (Linux/Windows)
 
-We provide `.yml` files which can be used to install virtual environment for running LOTS-IAM-GPU in Linux/Windows. Below is list of `.yml` files provided.
+We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu/tree/master/environments) folder which can be used to install virtual environment for running LOTS-IAM-GPU in Linux/Windows.
 
-1. [linux_iam_gpu_env_mini.yml](lots-iam-gpu/environments/linux_iam_gpu_env_mini.yml): Environment (Linux) which contains minimum requirenments for LOTS-IAM-GPU.
-2. [linux_iam_gpu_jynb_env.yml](lots-iam-gpu/environments/linux_iam_gpu_jynb_env.yml): Similar as Number 1 (Linux), plus Jupyter Notebook GUI kernel.
+Below is list of `.yml` files provided.
+
+1. [linux_iam_gpu_env_mini.yml](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_env_mini.yml): Environment (Linux) which contains minimum requirenments for LOTS-IAM-GPU.
+2. [linux_iam_gpu_jynb_env.yml](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_jynb_env.yml): Similar as Number 1 (Linux), plus Jupyter Notebook GUI kernel.
 
 End with an example of getting some data out of the system or using it for a little demo
 
