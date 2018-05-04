@@ -1,11 +1,20 @@
 # LOTS-IAM-GPU
 LOTS-IAM-GPU is a fast and fully-automatic unsupervised detection of irregular textures of white matter hyperintensities (i.e. WMH) on brain MRI. LOTS-IAM-GPU is an abbreviation of Limited One-time Sampling Irregularity Age Map (LOTS-IAM) on GPU.
 
-## Getting Started
+## A. Introduction
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Required Libraries
+### 1. Installation
+
+Clone the project from:
+
+```
+https://github.com/iboele/lots-iam-gpu
+```
+After cloning the project, the dependencies can be installed as described in the next sections.
+
+### 1.1 Required Libraries
 
 The project is written in Python (3.6.5). Below is the list of minimum prerequisites for running the project. Please note that versions of prerequisties are listed to inform user of the tested environment.
 
@@ -18,17 +27,8 @@ The project is written in Python (3.6.5). Below is the list of minimum prerequis
 - [NumPy (1.14.2)](http://www.numpy.org/): General purpose array-processing package.
 - [Cuda Toolkit](https://developer.nvidia.com/cuda-downloads): CUDA Toolkit for parallel programming.
 
-### Installation
 
-Clone the project from:
-
-```
-https://github.com/iboele/lots-iam-gpu
-```
-
-After cloning the project, the dependencies can be installed as described in the next sections.
-
-### Running on virtual environment of conda (Linux/Windows)
+#### 1.2.1 Running on virtual environment of conda (Linux/Windows)
 
 We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu/tree/master/environments) folder which can be used to activate a virtual environment for running LOTS-IAM-GPU in Linux/Windows.
 
@@ -55,48 +55,37 @@ By activating the provided environment, you should be able to run the project (i
 
 If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
 
-### GPU Processing
+#### 1.2.2 Running on virtual environment of conda (Linux/Windows)
+
+#### 1.3 GPU Processing
 
 Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) that compatible with your GPU.
 
-## Running the tests
+## 2 Running the Software
 
 Explain how to run the automated tests for this system
 
-### Break down into end to end tests
+### 2.1 Changing Software's Parameters
 
-Explain what these tests test and why
+Bla bla bla
 
-```
-Give an example
-```
+### 2.2 Changing CSV File - Batch Processing
 
-### And coding style tests
+Bla bla bla
 
-Explain what these tests test and why
+### 2.3 Expected Output
 
-```
-Give an example
-```
+### 3. How it works
 
-## Deployment
+### 4. Performance you should expect
 
-Add additional notes about how to deploy this on a live system
+### 5. License
 
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
+This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details
 
 ## Authors
 
 * febrianrachmadi
-
-
-## License
-
-This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
