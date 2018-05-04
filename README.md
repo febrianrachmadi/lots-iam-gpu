@@ -1,5 +1,5 @@
 # LOTS-IAM implemented on GPU
-LOTS-IAM-GPU is a fast and fully-automatic unsupervised detection of irregular textures (WMH) on MR image. LOTS-IAM-GPU is an abbreviation of Limited One-time Sampling Irregularity Age Map (LOTS-IAM) which is implemented on GPU.
+LOTS-IAM-GPU is a fast and fully-automatic unsupervised detection of irregular textures of white matter hyperintensities (i.e. WMH) on MR image. LOTS-IAM-GPU is an abbreviation of Limited One-time Sampling Irregularity Age Map (LOTS-IAM) on GPU.
 
 ## Getting Started
 
@@ -7,10 +7,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+The project is written in Python (3.6.5). Below is the list of minimum prerequisites for running the project. Please note that versions of prerequisties are listed to inform user of the tested environment.
 
 ```
-Give examples
+Python3: python=3.6.5
+Matplotlib: matplotlib=2.2.2
+Numba: numba=0.37.0
+Opencv: opencv=3.3.1
+Nibabel: nibabel==2.2.1
+Scikit-image: scikit-image=0.13.1
 ```
 
 ### Installing
