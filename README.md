@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 The project is written in Python (3.6.5). Below is the list of minimum prerequisites for running the project. Please note that versions of prerequisties are listed to inform user of the tested environment.
 
-- Python (3.6.5)
+- Python (3.5/3.6)
 - [Matplotlib (2.2.2)](https://matplotlib.org/): Required to save outputs in JPEG files for visualisation.
 - [Numba (0.37.0)](https://numba.pydata.org/): Required for GPU parallel computing.
 - [OpenCV (3.3.1)](https://docs.opencv.org/3.0-beta/index.html): Required for computer vision operations.
