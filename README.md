@@ -10,24 +10,22 @@ These instructions will get you a copy of the project up and running on your loc
 The project is written in Python (3.6.5). Below is the list of minimum prerequisites for running the project. Please note that versions of prerequisties are listed to inform user of the tested environment.
 
 - Python (3.6.5)
-- Matplotlib (2.2.2): The library is used to save outputs in JPEG files for visualisation.
+- [Matplotlib (2.2.2)](https://matplotlib.org/): Required to save outputs in JPEG files for visualisation.
 - [Numba (0.37.0)](https://numba.pydata.org/): Required for GPU parallel computing.
 - [OpenCV (3.3.1)](https://docs.opencv.org/3.0-beta/index.html): Required for computer vision operations.
 - [scikit-image (0.13.1)](http://scikit-image.org/): Required for computer vision operations.
-- [NiBabel (2.2.1)](http://nipy.org/nibabel/): The library used for loading and writing NIFTI files.
-- [NumPy](http://www.numpy.org/): General purpose array-processing package.
+- [NiBabel (2.2.1)](http://nipy.org/nibabel/): Required for loading and writing NIFTI files.
+- [NumPy (1.14.2)](http://www.numpy.org/): General purpose array-processing package.
 
-### Installing
+### Installation
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+Clone the project from:
 
 ```
 Give the example
 ```
 
-And repeat
+After cloning the project, the dependencies can be installed as described below.
 
 ```
 until finished
