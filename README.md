@@ -5,18 +5,17 @@ LOTS-IAM-GPU is a fast and fully-automatic unsupervised detection of irregular t
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+### Required Libraries
 
 The project is written in Python (3.6.5). Below is the list of minimum prerequisites for running the project. Please note that versions of prerequisties are listed to inform user of the tested environment.
 
-```
-Python3: python=3.6.5
-Matplotlib: matplotlib=2.2.2
-Numba: numba=0.37.0
-Opencv: opencv=3.3.1
-Nibabel: nibabel==2.2.1
-Scikit-image: scikit-image=0.13.1
-```
+- Python (3.6.5)
+- Matplotlib (2.2.2): The library is used to save outputs in JPEG files for visualisation.
+- [Numba (0.37.0)](https://numba.pydata.org/): Required for GPU parallel computing.
+- [OpenCV (3.3.1)](https://docs.opencv.org/3.0-beta/index.html): Required for computer vision operations.
+- [scikit-image (0.13.1)](http://scikit-image.org/): Required for computer vision operations.
+- [NiBabel (2.2.1)](http://nipy.org/nibabel/): The library used for loading and writing NIFTI files.
+- [NumPy](http://www.numpy.org/): General purpose array-processing package.
 
 ### Installing
 
