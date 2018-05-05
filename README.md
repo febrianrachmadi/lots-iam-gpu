@@ -27,9 +27,15 @@ First of all, you should make sure that Nvidia's CUDA Toolkit has been installed
 
 ### 1.3 Installing Required Libraries
 
+You have two options to install the project on your machine:
+1. Installing and running the LOTS-IAM-GPU on top of virtual environment (works for Linux/Windows) [Section 1.3.1]().
+2. Installing and running the LOTS-IAM-GPU directly on your local machine (tested on Linux 16.04) [Section 1.3.2]().
+
+**Note*:** Please make sure that Python3 has been installed in your local machine before continuing ([instructions](https://askubuntu.com/questions/865554/how-do-i-install-python-3-6-using-apt-get)).
+
 #### 1.3.1 Installing on virtual environment of conda (Linux/Windows) [RECOMMENDED]
 
-We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu/tree/master/environments) folder which can be used to activate a virtual environment for running LOTS-IAM-GPU in Linux/Windows.
+We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu/tree/master/environments) folder which can be used to activate a virtual environment for running LOTS-IAM-GPU in Linux/Windows. This is very useful especially if you want to run the software on Windows OS.
 
 Below is list of `.yml` files provided.
 
