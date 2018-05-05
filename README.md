@@ -177,8 +177,9 @@ A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method
 | ...    | ...        | ... | ... | ... | ... |
 | /dir/.../MRIdatabase/ | MRInnn        | /dir/.../MRIdatabase/MRInnn/FLAIR.nii.gz | /dir/.../MRIdatabase/MRInnn/ICV.nii.gz | /dir/.../MRIdatabase/MRInnn/CSF.nii.gz | /dir/.../MRIdatabase/MRInnn/NAWM.nii.gz |
 
-1. **Note #1:** You **MUST NOT** include the first line of example below ([please see the actual example of the CSV file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv)).
-2. **Note #2:** Currently, only NIfTI files that could be processed by the LOTS-IAM-GPU.
+**Important notes on the CSV input file:**
+1. You **MUST NOT** include the first line of example below ([please see the actual example of the CSV file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv)).
+2. Currently, only NIfTI files that could be processed by the LOTS-IAM-GPU.
 
 ### 3. How the LOTS-IAM-GPU works
 
