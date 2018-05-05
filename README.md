@@ -28,8 +28,8 @@ First of all, you should make sure that Nvidia's CUDA Toolkit has been installed
 ### 1.3. Installing Required Libraries
 
 You have two options to install the project on your machine:
-1. Installing and running the LOTS-IAM-GPU on top of virtual environment (tested on Ubuntu 16.04/Windows) [[Section 1.3.1](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)].
-2. Installing and running the LOTS-IAM-GPU directly on your local machine (tested on Ubuntu 16.04) [[Section 1.3.2](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#132-installing-on-your-local-machine-linux)].
+1. Installing and running LOTS-IAM-GPU on top of virtual environment (tested on Ubuntu 16.04/Windows) [[Section 1.3.1](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)].
+2. Installing and running LOTS-IAM-GPU directly on your local machine (tested on Ubuntu 16.04) [[Section 1.3.2](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#132-installing-on-your-local-machine-linux)].
 
 **Note:** Please make sure that Python3 has been installed in your local machine before continuing (recommended).
 
@@ -95,7 +95,7 @@ If you would like to run the LOTS-IAM-GPU on your machine, you could easily do t
 ### 2.1. Running the Software
 
 **Anaconda Navigator (Jupyter Notebook/GUI):** Please follow instructions below to run the software via Anaconda Navigator.
-1. Open `Anaconda Navigator` from `Start` menu (Windows) or `Terminal` and then call `anaconda-navigator` (Ubuntu-16.04).
+1. Open `Anaconda Navigator` from `Start` menu (Windows) or `Terminal > $anaconda-navigator` (Ubuntu-16.04).
 2. Activate the virtual environment by choosing `Home > Applications on > IAM_GPU_LINUX_jynb > jupyter notebook > Launch` tabs (for Linux Ubuntu-16.04) or `Home > Applications on > IAM_GPU_WIN > jupyter notebook > Launch` tabs (for Windows).
 3. Go to LOTS-IAM-GPU working directory.
 4. Open `LOTS_IAM_GPU_release.ipynb` Jupyter Notebook file.
