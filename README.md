@@ -127,7 +127,7 @@ Inside the experiment's folder, each patient/MRI data will have its own folder. 
 
 ### 2.2. Changing Software's Parameters
 
-In default, there are five paramaters that can be easily changed by the user (listed below). Change these parameters via [`iam_params.py` file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) or the second active cell in [`LOTS_IAM_GPU_release.ipynb` file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) (Jupyter Notebook user only).
+In default, there are five paramaters that can be easily changed by the user (listed below).
 
 ```
 ## General output full path (note to user: you can change this variable)
@@ -148,7 +148,11 @@ patch_size = [1,2,4,8]
 ## Samples used for IAM calculation 
 ## Default: num_samples_all = [512]
 num_samples_all = [64]
+## Uncomment line below and comment line above if you want to run all different number of samples 
+# num_samples_all = [64, 128, 256, 512, 1024, 2048]
 ```
+
+User can change these parameters via [`iam_params.py`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) file or the second active cell in [`LOTS_IAM_GPU_release.ipynb`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/LOTS_IAM_GPU_release.ipynb) file (Jupyter Notebook user only).
 
 ### 2.3. Changing CSV File - Batch Processing
 
