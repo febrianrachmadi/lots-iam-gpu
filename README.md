@@ -157,7 +157,7 @@ User can change these parameters via [`iam_params.py`](https://github.com/febria
 
 **Important notes:** Some more explanations regarding of changeable parameters.
 1. The parameter of `output_filedir` should follow this convention: `output_path`/`name_of_experiment`.
-2. The `csv_filename` parameter should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.4](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-csv-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
+2. The `csv_filename` parameter should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.4](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
 3. Change the value of `save_jpeg` parameter to `False` if you do not want to save JPEG visualisation files.
 
 ### 2.4. Changing the CSV Input File - List of MRI datasets to be processed
@@ -166,10 +166,10 @@ A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method
 
 | Path to MRI's folder | MRI data name | Path to FLAIR.nii.gz | Path to ICV.nii.gz | Path to CSF.nii.gz | Path to NAWM.nii.gz |
 |:--------------------:|:-------------:|:--------------------:|:------------------:|:------------------:|:-------------------:|
-| /dir/.../MRIdataset/ | MRI001        | /dir/.../MRIdataset/MRI001/FLAIR.nii.gz | /dir/.../MRIdataset/MRI001/ICV.nii.gz | /dir/.../MRIdataset/MRI001/CSF.nii.gz | /dir/.../MRIdataset/MRI001/NAWM.nii.gz |
-| /dir/.../MRIdataset/ | MRI001        | /dir/.../MRIdataset/MRI002/FLAIR.nii.gz | /dir/.../MRIdataset/MRI002/ICV.nii.gz | /dir/.../MRIdataset/MRI002/CSF.nii.gz | /dir/.../MRIdataset/MRI002/NAWM.nii.gz |
+| /dir/.../MRIdatabase/ | MRI001        | /dir/.../MRIdatabase/MRI001/FLAIR.nii.gz | /dir/.../MRIdatabase/MRI001/ICV.nii.gz | /dir/.../MRIdatabase/MRI001/CSF.nii.gz | /dir/.../MRIdatabase/MRI001/NAWM.nii.gz |
+| /dir/.../MRIdatabase/ | MRI001        | /dir/.../MRIdatabase/MRI002/FLAIR.nii.gz | /dir/.../MRIdatabase/MRI002/ICV.nii.gz | /dir/.../MRIdatabase/MRI002/CSF.nii.gz | /dir/.../MRIdatabase/MRI002/NAWM.nii.gz |
 | ...    | ...        | ... | ... | ... | ... |
-| /dir/.../MRIdataset/ | MRInnn        | /dir/.../MRIdataset/MRInnn/FLAIR.nii.gz | /dir/.../MRIdataset/MRInnn/ICV.nii.gz | /dir/.../MRIdataset/MRInnn/CSF.nii.gz | /dir/.../MRIdataset/MRInnn/NAWM.nii.gz |
+| /dir/.../MRIdatabase/ | MRInnn        | /dir/.../MRIdatabase/MRInnn/FLAIR.nii.gz | /dir/.../MRIdatabase/MRInnn/ICV.nii.gz | /dir/.../MRIdatabase/MRInnn/CSF.nii.gz | /dir/.../MRIdatabase/MRInnn/NAWM.nii.gz |
 
 ### 3. How the LOTS-IAM-GPU works
 
