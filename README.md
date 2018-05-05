@@ -32,7 +32,7 @@ The project is written in Python (3.6.5). Below is the list of minimum prerequis
 
 First of all, you should make sure that Nvidia's CUDA Toolkit has been installed in your local machine. Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) that compatible with your GPU and OS.
 
-#### 1.3.1 Running on virtual environment of conda (Linux/Windows)
+#### 1.3.1 Running on virtual environment of conda (Linux/Windows) [RECOMMENDED]
 
 We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu/tree/master/environments) folder which can be used to activate a virtual environment for running LOTS-IAM-GPU in Linux/Windows.
 
@@ -61,6 +61,24 @@ By activating the provided environment, you should be able to run the project (i
 If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
 
 #### 1.3.2 Running on your local machine (Linux)
+
+If you would like to run the LOTS-IAM-GPU on your machine, you could easily do that by installing all of required libraries on your local machine. If you are not sure how to do it, please follow instructions below.
+
+1. Install `python3` ([instructions](https://askubuntu.com/questions/865554/how-do-i-install-python-3-6-using-apt-get)).
+2. Install `pip3` for `python3`.
+```
+sudo apt-get install python3-setuptools
+sudo easy_install3 pip
+```
+3. Install miniconda ([insructions](https://conda.io/docs/user-guide/install/linux.html)).
+4. Install required libraries from `conda`:
+```
+conda install --file environments/requirements_conda.txt
+```
+5. Install required libraries from `pip3`:
+```
+pip3 install -r environments/requirements_pip3.txt
+```
 
 
 ## 2 Running the Software
