@@ -155,9 +155,11 @@ num_samples_all = [64]
 User can change these parameters via [`iam_params.py`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) file or the second active cell in [`LOTS_IAM_GPU_release.ipynb`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/LOTS_IAM_GPU_release.ipynb) file (Jupyter Notebook user only) before running the software.
 
 **Important notes:** Some more explanations regarding of changeable parameters.
-1. The parameter of `output_filedir` should follow this convention: `output_path`/`name_of_experiment`.  
+1. The parameter of `output_filedir` should follow this convention: `output_path`/`name_of_experiment`.
+2. The `csv_filename` parameter should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.3] for more detailed explanation.
+3. Change the value of `save_jpeg` parameter to `False` if you do not want to save JPEG visualisation files.
 
-### 2.3. Changing CSV File - Batch Processing
+### 2.3. Changing CSV File - List of MRI datasets to be processed
 
 Bla bla bla
 
