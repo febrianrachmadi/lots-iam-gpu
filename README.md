@@ -59,7 +59,8 @@ After installation of Anaconda/miniconda, you now can import the provided enviro
 After importing the environment file, you should be able to see the imported environment's name (in **Anaconda Navigator**, choose `Home > Applications on` or `Environments` tabs; while in **miniconda**, call `conda env list`). You now should be able to activate/deactivate (i.e. load/unload) the virtual environment by following these instructions:
 1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#using-an-environment).
 2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment). Example:
-    ```source activate IAM_GPU_LINUX_mini
+    ```
+    source activate IAM_GPU_LINUX_mini
     ```
 
 By activating the provided environment, you should be able to run the project (if only if you have installed [CUDA Toolkit](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#gpu-processing) in your machine). To deactivate (i.e. unload) an active environment running on terminal, call `source deactivate`.
@@ -176,7 +177,7 @@ A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method
 | ...    | ...        | ... | ... | ... | ... |
 | /dir/.../MRIdatabase/ | MRInnn        | /dir/.../MRIdatabase/MRInnn/FLAIR.nii.gz | /dir/.../MRIdatabase/MRInnn/ICV.nii.gz | /dir/.../MRIdatabase/MRInnn/CSF.nii.gz | /dir/.../MRIdatabase/MRInnn/NAWM.nii.gz |
 
-1. **Note #1:** You do not have to include the first line of example below ([please see the actual example of the CSV file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv)).
+1. **Note #1:** You **MUST NOT** include the first line of example below ([please see the actual example of the CSV file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv)).
 2. **Note #2:** Currently, only NIfTI files that could be processed by the LOTS-IAM-GPU.
 
 ### 3. How the LOTS-IAM-GPU works
