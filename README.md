@@ -28,7 +28,11 @@ The project is written in Python (3.6.5). Below is the list of minimum prerequis
 - [Cuda Toolkit](https://developer.nvidia.com/cuda-downloads): CUDA Toolkit for parallel programming.
 
 
-#### 1.2.1 Running on virtual environment of conda (Linux/Windows)
+#### 1.3 GPU Processing
+
+First of all, you should make sure that Nvidia's CUDA Toolkit has been installed in your local machine. Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) that compatible with your GPU and OS.
+
+#### 1.3.1 Running on virtual environment of conda (Linux/Windows)
 
 We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu/tree/master/environments) folder which can be used to activate a virtual environment for running LOTS-IAM-GPU in Linux/Windows.
 
@@ -56,11 +60,8 @@ By activating the provided environment, you should be able to run the project (i
 
 If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
 
-#### 1.2.2 Running on your local machine (Linux)
+#### 1.3.2 Running on your local machine (Linux)
 
-#### 1.3 GPU Processing
-
-Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) that compatible with your GPU.
 
 ## 2 Running the Software
 
