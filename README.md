@@ -86,20 +86,20 @@ pip3 install -r environments/requirements_pip3.txt
 
 ## 2. Running the Software
 
-* Please follow instructions below to run the project via **Anaconda Navigator** (with GUI).
-  1. Activate the virtual environment by choosing `Home > Applications on > IAM_GPU_LINUX_jynb > jupyter notebook > Launch` tabs.
-  2. Go to LOTS-IAM-GPU working directory.
-  3. Open `LOTS_IAM_GPU_release.ipynb` Jupyter Notebook file.
-  4. Choose working kernel by choosing `Kernel > Change kernel > IAM_GPU_LINUX_jynb`.
-  5. Run all cells by choosing `Kernel > Restart & Run All`. *Note*: You can run each cell one-by-one by choosing a cell and then click `>| Run` button.
-  6. Wait until all cells are finished.
-  7. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
+**Anaconda Navigator (Jupyter Notebook/GUI):** Please follow instructions below to run the project via Anaconda Navigator.
+1. Activate the virtual environment by choosing `Home > Applications on > IAM_GPU_LINUX_jynb > jupyter notebook > Launch` tabs.
+2. Go to LOTS-IAM-GPU working directory.
+3. Open `LOTS_IAM_GPU_release.ipynb` Jupyter Notebook file.
+4. Choose working kernel by choosing `Kernel > Change kernel > IAM_GPU_LINUX_jynb`.
+5. Run all cells by choosing `Kernel > Restart & Run All`. *Note*: You can run each cell one-by-one by choosing a cell and then click `>| Run` button.
+6. Wait until all cells are finished.
+7. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
 
-* Please follow instructions below to run the project via **miniconda** (with command line).
-  1. Activate the virtual environment calling `source activate IAM_GPU_LINUX_mini`.
-  2. Go to LOTS-IAM-GPU working directory.
-  3. Run the software by calling `python iam_lots_gpu.py` on the terminal.
-  4. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
+**Miniconda (command line):** Please follow instructions below to run the project via command line.
+1. Activate the virtual environment calling `source activate IAM_GPU_LINUX_mini`.
+2. Go to LOTS-IAM-GPU working directory.
+3. Run the software by calling `python iam_lots_gpu.py` on the terminal.
+4. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
 
 ### 2.1 Changing Software's Parameters
 
