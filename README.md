@@ -42,8 +42,8 @@ Below is list of `.yml` files provided.
 2. [IAM_GPU_LINUX_jynb](https://github.com/iboele/lots-iam-gpu/blob/master/environments/linux_iam_gpu_jynb_env.yml): Similar as Number 1 (Linux), plus Jupyter Notebook GUI kernel.
 3. [IAM_GPU_WIN](https://github.com/iboele/lots-iam-gpu/blob/master/environments/win_iam_gpu_jynb_env.yml): Similar as Number 1 (for Windows), plus Jupyter Notebook GUI kernel.
 
-To use the provided environments, you have two options:
-1. Use [Anaconda Navigator](https://www.anaconda.com/download/) if you need GUI to work with. Please follow [these instructions](https://docs.anaconda.com/anaconda/install/) for detailed installation.
+To use the provided environments, you have to install either Anaconda Navigator or miniconda for `python3`:
+1. Use [Anaconda Navigator](https://www.anaconda.com/download/) if you want to have GUI to work with. Please follow [these instructions](https://docs.anaconda.com/anaconda/install/) for detailed installation.
 2. Use [miniconda](https://conda.io/miniconda.html) if you do not need GUI (command lines only). Please follow [these instructions](https://conda.io/docs/user-guide/install/index.html) for detailed installation.
 
 **NOTE:** GUI workspace is provided by Jupyter Notebook which can be called by using either *Anaconda Navigator's GUI* or *miniconda's command line* (by calling `jupyter notebook` after importing and activating the virtual environment). 
@@ -65,12 +65,15 @@ If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda
 If you would like to run the LOTS-IAM-GPU on your machine, you could easily do that by installing all of required libraries on your local machine. If you are not sure how to do it, please follow instructions below.
 
 1. Install `python3` ([instructions](https://askubuntu.com/questions/865554/how-do-i-install-python-3-6-using-apt-get)).
-2. Install `pip3` for `python3`.
+2. Install `pip3` for `python3`:
 ```
 sudo apt-get install python3-setuptools
 sudo easy_install3 pip
 ```
-3. Install miniconda ([insructions](https://conda.io/docs/user-guide/install/linux.html)).
+3. Install miniconda for `python3` ([insructions](https://conda.io/docs/user-guide/install/linux.html)) and update it:
+```
+conda update -n base conda
+```
 4. Install required libraries from `conda`:
 ```
 conda install --file environments/requirements_conda.txt
