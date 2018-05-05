@@ -96,10 +96,10 @@ If you would like to run the LOTS-IAM-GPU on your machine, you could easily do t
 
 **Anaconda Navigator (Jupyter Notebook/GUI):** Please follow instructions below to run the software via Anaconda Navigator.
 1. Open Anaconda Navigator (Linux/Windows).
-2. Activate the virtual environment by choosing `Home > Applications on > IAM_GPU_LINUX_jynb > jupyter notebook > Launch` tabs.
+2. Activate the virtual environment by choosing `Home > Applications on > IAM_GPU_LINUX_jynb > jupyter notebook > Launch` tabs (for Linux) or `Home > Applications on > IAM_GPU_WIN > jupyter notebook > Launch` tabs (for Windows).
 3. Go to LOTS-IAM-GPU working directory.
 4. Open `LOTS_IAM_GPU_release.ipynb` Jupyter Notebook file.
-5. Choose working kernel by choosing `Kernel > Change kernel > IAM_GPU_LINUX_jynb`.
+5. Choose working kernel by choosing `Kernel > Change kernel > IAM_GPU_LINUX_jynb` (onnly for Linux).
 6. Run all cells by choosing `Kernel > Restart & Run All`. *Note*: You can run each cell one-by-one by choosing a cell and then click `>| Run` button.
 7. Wait until all jobs in all cells are finished.
 8. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
