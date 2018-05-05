@@ -162,14 +162,17 @@ User can change these parameters via [`iam_params.py`](https://github.com/febria
 
 ### 2.4. Changing the CSV Input File - List of MRI datasets to be processed
 
-A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method. The default name of the CSV file is [`IAM_GPU_pipeline_test_v2.csv`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv). Feel free to edit or make a new CSV input file as long as following the convention below. If you make a new CSV input file, do not forget to change software's input parameters (see [Section 2.3](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters)). ***Note:** You do not have to include the first line of example below ([please see the actual example of the CSV file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv)).*
+A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method. The default name of the CSV file is [`IAM_GPU_pipeline_test_v2.csv`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv). Feel free to edit or make a new CSV input file as long as following the convention below. If you make a new CSV input file, do not forget to change software's input parameters (see [Section 2.3](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters)).
 
-| Path to MRI's folder | Names of MRI data | Path to FLAIR NIFTI files | Path to ICV NIFTI files | Path to CSF NIFTI files | Path to NAWM NIFTI files |
+| Path to MRI's folder | Names of MRI data | Path to FLAIR NIfTI files | Path to ICV NIfTI files | Path to CSF NIfTI files | Path to NAWM NIfTI files |
 |:--------------------:|:-------------:|:--------------------:|:------------------:|:------------------:|:-------------------:|
 | /dir/.../MRIdatabase/ | MRI001        | /dir/.../MRIdatabase/MRI001/FLAIR.nii.gz | /dir/.../MRIdatabase/MRI001/ICV.nii.gz | /dir/.../MRIdatabase/MRI001/CSF.nii.gz | /dir/.../MRIdatabase/MRI001/NAWM.nii.gz |
 | /dir/.../MRIdatabase/ | MRI001        | /dir/.../MRIdatabase/MRI002/FLAIR.nii.gz | /dir/.../MRIdatabase/MRI002/ICV.nii.gz | /dir/.../MRIdatabase/MRI002/CSF.nii.gz | /dir/.../MRIdatabase/MRI002/NAWM.nii.gz |
 | ...    | ...        | ... | ... | ... | ... |
 | /dir/.../MRIdatabase/ | MRInnn        | /dir/.../MRIdatabase/MRInnn/FLAIR.nii.gz | /dir/.../MRIdatabase/MRInnn/ICV.nii.gz | /dir/.../MRIdatabase/MRInnn/CSF.nii.gz | /dir/.../MRIdatabase/MRInnn/NAWM.nii.gz |
+
+1. ***Note #1:** You do not have to include the first line of example below ([please see the actual example of the CSV file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv)).*
+2. ***Note #2:** Currently, only NIfTI files that could be processed by the LOTS-IAM-GPU.
 
 ### 3. How the LOTS-IAM-GPU works
 
