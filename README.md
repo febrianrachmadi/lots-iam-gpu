@@ -127,7 +127,7 @@ Inside the experiment's folder, each patient/MRI data will have its own folder. 
 
 ### 2.2. Changing Software's Parameters
 
-In default, there are five paramaters that can be easily changed by the user (listed below).
+In default, there are five paramaters that can be easily changed by the user (listed below). Change these parameters via [`iam_params.py` file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) or the second active cell in [`LOTS_IAM_GPU_release.ipynb` file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) (Jupyter Notebook user only).
 
 ```
 ## General output full path (note to user: you can change this variable)
