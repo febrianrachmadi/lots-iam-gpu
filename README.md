@@ -131,7 +131,7 @@ Inside the experiment's folder, each patient/MRI data will have its own folder. 
 
 In default, there are five paramaters that can be easily changed by the user (listed below).
 
-```
+```python
 ## General output full path (note to user: you can change this variable)
 output_filedir = "results/IAM_GPU_pipeline_test"
 
@@ -172,6 +172,9 @@ A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method
 | /dir/.../MRIdatabase/ | MRInnn        | /dir/.../MRIdatabase/MRInnn/FLAIR.nii.gz | /dir/.../MRIdatabase/MRInnn/ICV.nii.gz | /dir/.../MRIdatabase/MRInnn/CSF.nii.gz | /dir/.../MRIdatabase/MRInnn/NAWM.nii.gz |
 
 ### 3. How the LOTS-IAM-GPU works
+
+![alt text](documentation/LOTS-IAM-Illustration.png "LOTS-IAM_GPU Method in Summary")
+Figure 1: Flow of one slice of MRI data processed by LOTS-IAM-GPU.
 
 ### 4. Expected Performance
 
