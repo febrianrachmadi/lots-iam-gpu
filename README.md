@@ -152,7 +152,10 @@ num_samples_all = [64]
 # num_samples_all = [64, 128, 256, 512, 1024, 2048]
 ```
 
-User can change these parameters via [`iam_params.py`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) file or the second active cell in [`LOTS_IAM_GPU_release.ipynb`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/LOTS_IAM_GPU_release.ipynb) file (Jupyter Notebook user only).
+User can change these parameters via [`iam_params.py`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) file or the second active cell in [`LOTS_IAM_GPU_release.ipynb`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/LOTS_IAM_GPU_release.ipynb) file (Jupyter Notebook user only) before running the software.
+
+**Important notes:** Some more explanations regarding of changeable parameters.
+1. The parameter of `output_filedir` should follow this convention: `output_path`/`name_of_experiment`.  
 
 ### 2.3. Changing CSV File - Batch Processing
 
