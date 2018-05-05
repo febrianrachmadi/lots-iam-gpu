@@ -143,9 +143,8 @@ save_jpeg = True
 ## Default: patch_size = [1,2,4,8]
 patch_size = [1,2,4,8]
 
-## Used only for automatic calculation for all number of samples
+## Number of samples used for LOTS-IAM calculation 
 ## NOTE: Smaller number of samples makes computation faster (please refer to the manuscript).
-## Samples used for IAM calculation 
 ## Default: num_samples_all = [512]
 num_samples_all = [64]
 ## Uncomment line below and comment line above if you want to run all different number of samples 
