@@ -95,17 +95,17 @@ If you would like to run the LOTS-IAM-GPU on your machine, you could easily do t
 ### 2.1. Running the Software
 
 **Anaconda Navigator (Jupyter Notebook/GUI):** Please follow instructions below to run the software via Anaconda Navigator.
-1. Open `Anaconda Navigator` from `Start` menu (Windows) or `Terminal > $anaconda-navigator` (Ubuntu-16.04).
-2. Activate the virtual environment by choosing `Home > Applications on > IAM_GPU_LINUX_jynb > jupyter notebook > Launch` tabs (Ubuntu 16.04) or `Home > Applications on > IAM_GPU_WIN > jupyter notebook > Launch` tabs (Windows).
+1. Open `Anaconda Navigator` from `Start` menu (Windows) or `Terminal > $ anaconda-navigator` (Ubuntu-16.04).
+2. Activate the virtual environment by choosing `Home > Applications on > IAM_GPU_LINUX_jynb > jupyter notebook > Launch` tabs (Ubuntu-16.04) or `Home > Applications on > IAM_GPU_WIN > jupyter notebook > Launch` tabs (Windows).
 3. Go to LOTS-IAM-GPU working directory.
 4. Open `LOTS_IAM_GPU_release.ipynb` Jupyter Notebook file.
-5. Choose working kernel by choosing `Kernel > Change kernel > IAM_GPU_LINUX_jynb` (only for Linux Ubuntu-16.04).
+5. Choose working kernel by choosing `Kernel > Change kernel > IAM_GPU_LINUX_jynb` (only for Linux/Ubuntu-16.04).
 6. Run all cells by choosing `Kernel > Restart & Run All`. *Note*: You can run each cell one-by-one by choosing a cell and then click `>| Run` button.
 7. Wait until all jobs in all cells are finished.
 8. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
 
 **Miniconda (command line):** Please follow instructions below to run the software via miniconda/command line.
-1. Open Terminal (Linux Ubuntu-16.04) or Anaconda Prompt (Windows).
+1. Open `Terminal` (Linux Ubuntu-16.04) or `Anaconda Prompt` from `Start` menu (Windows).
 2. Activate the virtual environment by calling `source activate IAM_GPU_LINUX_mini` (Ubuntu-16.04) or `activate IAM_GPU_WIN` (Windows).
 3. Go to LOTS-IAM-GPU working directory.
 4. Run the software by calling `python iam_lots_gpu.py` on the terminal.
