@@ -10,7 +10,7 @@ https://github.com/iboele/lots-iam-gpu
 
 ### 1.1 Required Libraries
 
-The project is written in Python (3.6.5). Below is the list of minimum prerequisites for running the project. Please note that versions of prerequisties are listed to inform user of the tested environment.
+The project is written in Python3. Below is the list of minimum prerequisites for running the project. Please note that versions of prerequisties are listed to inform user of the tested environment.
 
 - Python (3.5/3.6)
 - [Matplotlib (2.2.2)](https://matplotlib.org/): Required to save outputs in JPEG files for visualisation.
