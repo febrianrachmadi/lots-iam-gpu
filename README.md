@@ -1,7 +1,7 @@
 # LOTS-IAM-GPU
 LOTS-IAM-GPU is a fast and fully-automatic unsupervised detection of irregular textures of white matter hyperintensities (i.e. WMH) on brain MRI. LOTS-IAM-GPU is an abbreviation of Limited One-time Sampling Irregularity Age Map (LOTS-IAM) on GPU.
 
-## 1. Instruction of Installation
+## 1. Installation
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Please clone/download the project from:
 ```
@@ -84,7 +84,9 @@ If you would like to run the LOTS-IAM-GPU on your machine, you could easily do t
     pip3 install -r environments/requirements_pip3.txt
     ```
 
-## 2. Running the Software
+## 2. Usage
+
+### 2.1. Running the Software
 
 **Anaconda Navigator (Jupyter Notebook/GUI):** Please follow instructions below to run the software via Anaconda Navigator.
 1. Open Anaconda Navigator (Linux/Windows).
@@ -108,7 +110,7 @@ If you would like to run the LOTS-IAM-GPU on your machine, you could easily do t
 2. Run the software by calling `python iam_lots_gpu.py` on the terminal.
 3. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
 
-### 2.1. Expected Output
+### 2.2. Expected Output
 
 The software will automatically create a new folder named `results` in the working folder (default). Inside this folder, each experiment will have its own folder to save results produced by LOTS-IAM-GPU's method. The experiment output folder name's follows convention of `experiment_name`*_*`number_of_samples`. To change experiment's name and number of samples, please see [Section 2.2 Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#22-changing-softwares-parameters).
 
@@ -125,7 +127,7 @@ Inside the experiment's folder, each patient/MRI data will have its own folder. 
     * `IAM_GPU_GN.nii.gz`: the final age map values (i.e. global normalisation and penalty), and the
     * `IAM_GPU_GN_postprocessed.nii.gz`: the final age map values plus post-processing.
 
-### 2.2. Changing Software's Parameters
+### 2.3. Changing Software's Parameters
 
 In default, there are five paramaters that can be easily changed by the user (listed below).
 
@@ -158,7 +160,7 @@ User can change these parameters via [`iam_params.py`](https://github.com/febria
 2. The `csv_filename` parameter should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.3](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-csv-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
 3. Change the value of `save_jpeg` parameter to `False` if you do not want to save JPEG visualisation files.
 
-### 2.3. Changing the CSV Input File - List of MRI datasets to be processed
+### 2.4. Changing the CSV Input File - List of MRI datasets to be processed
 
 A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method. The default name of the CSV file is [`IAM_GPU_pipeline_test_v2.csv`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv). Feel free to edit or make a new CSV input file as long as following the convention below. ***Note:** You do not have to include the first line of example below ([please see the actual example of the CSV file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv)).*
 
@@ -169,13 +171,13 @@ A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method
 | ...    | ...        | ... | ... | ... | ... |
 | /dir/.../MRIdataset/ | MRInnn        | /dir/.../MRIdataset/MRInnn/FLAIR.nii.gz | /dir/.../MRIdataset/MRInnn/ICV.nii.gz | /dir/.../MRIdataset/MRInnn/CSF.nii.gz | /dir/.../MRIdataset/MRInnn/NAWM.nii.gz |
 
-### 3. How it works
+### 3. How the LOTS-IAM-GPU works
 
-### 4. Performance you should expect
+### 4. Expected Performance
 
 ### 5. License
 
-This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
 
 ## Authors
 
