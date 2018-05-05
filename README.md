@@ -127,7 +127,28 @@ Inside the experiment's folder, each patient/MRI data will have its own folder. 
 
 ### 2.2. Changing Software's Parameters
 
-Bla bla bla
+In default, there are five paramaters that can be easily changed by the user (listed below).
+
+```
+## General output full path (note to user: you can change this variable)
+output_filedir = "results/IAM_GPU_pipeline_test"
+
+## Name of csv file (note to user: you can change this variable)
+csv_filename = "IAM_GPU_pipeline_test_v2.csv"
+
+# Save JPEG outputs
+save_jpeg = True
+
+## Size of source and target patches
+## Default: patch_size = [1,2,4,8]
+patch_size = [1,2,4,8]
+
+## Used only for automatic calculation for all number of samples
+## NOTE: Smaller number of samples makes computation faster (please refer to the manuscript).
+## Samples used for IAM calculation 
+## Default: num_samples_all = [512]
+num_samples_all = [64]
+```
 
 ### 2.3. Changing CSV File - Batch Processing
 
