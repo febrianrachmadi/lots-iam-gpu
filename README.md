@@ -95,11 +95,16 @@ pip3 install -r environments/requirements_pip3.txt
 6. Wait until all cells are finished.
 7. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
 
-**Miniconda (command line):** Please follow instructions below to run the project via command line.
+**Miniconda (command line):** Please follow instructions below to run the project via miniconda/command line.
 1. Activate the virtual environment calling `source activate IAM_GPU_LINUX_mini`.
 2. Go to LOTS-IAM-GPU working directory.
 3. Run the software by calling `python iam_lots_gpu.py` on the terminal.
 4. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
+
+**Local Machine (Linux/command line):** Please follow instructions below to run the project via Linux/command line.
+1. Go to LOTS-IAM-GPU working directory.
+2. Run the software by calling `python iam_lots_gpu.py` on the terminal.
+3. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
 
 ### 2.1 Changing Software's Parameters
 
