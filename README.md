@@ -28,10 +28,10 @@ First of all, you should make sure that Nvidia's CUDA Toolkit has been installed
 ### 1.3 Installing Required Libraries
 
 You have two options to install the project on your machine:
-1. Installing and running the LOTS-IAM-GPU on top of virtual environment (works for Linux/Windows) [Section 1.3.1]().
-2. Installing and running the LOTS-IAM-GPU directly on your local machine (tested on Linux 16.04) [Section 1.3.2]().
+1. Installing and running the LOTS-IAM-GPU on top of virtual environment (works for Linux/Windows) [see Section 1.3.1](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#131-installing-on-virtual-environment-of-conda-linuxwindows-recommended).
+2. Installing and running the LOTS-IAM-GPU directly on your local machine (tested on Linux 16.04) [see Section 1.3.2](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#132-installing-on-your-local-machine-linux).
 
-**Note*:** Please make sure that Python3 has been installed in your local machine before continuing ([instructions](https://askubuntu.com/questions/865554/how-do-i-install-python-3-6-using-apt-get)).
+**Note:** Please make sure that Python3 has been installed in your local machine before continuing ([instructions](https://askubuntu.com/questions/865554/how-do-i-install-python-3-6-using-apt-get)).
 
 #### 1.3.1 Installing on virtual environment of conda (Linux/Windows) [RECOMMENDED]
 
@@ -61,7 +61,7 @@ By activating the provided environment, you should be able to run the project (i
 
 If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
 
-#### 1.2.2 Installing on your local machine (Linux)
+#### 1.3.2 Installing on your local machine (Linux)
 
 If you would like to run the LOTS-IAM-GPU on your machine, you could easily do that by installing all of required libraries on your local machine. If you are not sure how to do it, please follow instructions below.
 
