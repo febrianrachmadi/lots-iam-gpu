@@ -160,14 +160,14 @@ User can change these parameters via [`iam_params.py`](https://github.com/febria
 
 ### 2.3. Changing the CSV Input File - List of MRI datasets to be processed
 
-A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method. The default name of the CSV file is `IAM_GPU_pipeline_test_v2.csv`. The user is free to make a new CSV input file as long as following the convention below.
+A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method. The default name of the CSV file is [`IAM_GPU_pipeline_test_v2.csv`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv). The user is free to make a new CSV input file as long as following the convention below.
 
 | Path to MRI's folder | MRI data name | Path to FLAIR.nii.gz | Path to ICV.nii.gz | Path to CSF.nii.gz | Path to NAWM.nii.gz |
-| -------------------- |:-------------:| --------------------:| ------------------:| ------------------:| -------------------:|
-| /dir/MRIdataset/     | MRI001        | /dir/MRIdataset/MRI001/FLAIR.nii.gz | /dir/MRIdataset/MRI001/ICV.nii.gz | /dir/MRIdataset/MRI001/CSF.nii.gz | /dir/MRIdataset/MRI001/NAWM.nii.gz |
-| /dir/MRIdataset/     | MRI001        | /dir/MRIdataset/MRI002/FLAIR.nii.gz | /dir/MRIdataset/MRI002/ICV.nii.gz | /dir/MRIdataset/MRI002/CSF.nii.gz | /dir/MRIdataset/MRI002/NAWM.nii.gz |
+|:--------------------:|:-------------:|:--------------------:|:------------------:|:------------------:|:-------------------:|
+| /dir/.../MRIdataset/  MRI001        | /dir/.../MRIdataset/MRI001/FLAIR.nii.gz | /dir/.../MRIdataset/MRI001/ICV.nii.gz | /dir/.../MRIdataset/MRI001/CSF.nii.gz | /dir/.../MRIdataset/MRI001/NAWM.nii.gz |
+| /dir/.../MRIdataset/ | MRI001        | /dir/.../MRIdataset/MRI002/FLAIR.nii.gz | /dir/.../MRIdataset/MRI002/ICV.nii.gz | /dir/.../MRIdataset/MRI002/CSF.nii.gz | /dir/.../MRIdataset/MRI002/NAWM.nii.gz |
 | ...    | ...        | ... | ... | ... | ... |
-| /dir/MRIdataset/     | MRInnn        | /dir/MRIdataset/MRInnn/FLAIR.nii.gz | /dir/MRIdataset/MRInnn/ICV.nii.gz | /dir/MRIdataset/MRInnn/CSF.nii.gz | /dir/MRIdataset/MRInnn/NAWM.nii.gz |
+| /dir/.../MRIdataset/ | MRInnn        | /dir/.../MRIdataset/MRInnn/FLAIR.nii.gz | /dir/.../MRIdataset/MRInnn/ICV.nii.gz | /dir/.../MRIdataset/MRInnn/CSF.nii.gz | /dir/.../MRIdataset/MRInnn/NAWM.nii.gz |
 
 ### 3. How it works
 
