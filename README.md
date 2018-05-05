@@ -5,7 +5,7 @@ LOTS-IAM-GPU is a fast and fully-automatic unsupervised detection of irregular t
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Please clone/download the project from:
 ```
-https://github.com/iboele/lots-iam-gpu
+https://github.com/febrianrachmadi/lots-iam-gpu
 ```
 
 ### 1.1. Required Libraries
@@ -159,7 +159,7 @@ User can change these parameters via [`iam_params.py`](https://github.com/febria
 2. The `csv_filename` parameter should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.3](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-csv-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
 3. Change the value of `save_jpeg` parameter to `False` if you do not want to save JPEG visualisation files.
 
-### 2.3. Changing CSV File - List of MRI datasets to be processed
+### 2.3. Changing the CSV Input File - List of MRI datasets to be processed
 
 Bla bla bla
 
