@@ -86,7 +86,8 @@ pip3 install -r environments/requirements_pip3.txt
 
 ## 2. Running the Software
 
-Explain how to run the automated tests for this system
+Please follow instructions below to run the project.
+1. Activate the virtual environment via **Anaconda Navigator** (e.g. by choosing `Home > Applications on > IAM_GPU_LINUX_jynb > jupyter notebook > Launch` or `Environments > IAM_GPU_LINUX_mini > Open Terminal` tabs) or **miniconda** (e.g. `source activate IAM_GPU_LINUX_mini`).
 
 ### 2.1 Changing Software's Parameters
 
