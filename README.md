@@ -87,18 +87,18 @@ pip3 install -r environments/requirements_pip3.txt
 ## 2. Running the Software
 
 **Anaconda Navigator (Jupyter Notebook/GUI):** Please follow instructions below to run the software via Anaconda Navigator.
-1. Open Anaconda Navigator (Linux/Win).
+1. Open Anaconda Navigator (Linux/Windows).
 2. Activate the virtual environment by choosing `Home > Applications on > IAM_GPU_LINUX_jynb > jupyter notebook > Launch` tabs.
 3. Go to LOTS-IAM-GPU working directory.
 4. Open `LOTS_IAM_GPU_release.ipynb` Jupyter Notebook file.
 5. Choose working kernel by choosing `Kernel > Change kernel > IAM_GPU_LINUX_jynb`.
 6. Run all cells by choosing `Kernel > Restart & Run All`. *Note*: You can run each cell one-by-one by choosing a cell and then click `>| Run` button.
-7. Wait until all cells are finished.
+7. Wait until all jobs in all cells are finished.
 8. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
 
 **Miniconda (command line):** Please follow instructions below to run the project via miniconda/command line.
-1. Open Terminal (Linux) or Anaconda Prompt (Win).
-2. Activate the virtual environment by calling `source activate IAM_GPU_LINUX_mini` (Linux) or `activate IAM_GPU_LINUX_mini` (Win).
+1. Open Terminal (Linux) or Anaconda Prompt (Windows).
+2. Activate the virtual environment by calling `source activate IAM_GPU_LINUX_mini` (Linux) or `activate IAM_GPU_LINUX_mini` (Windows).
 3. Go to LOTS-IAM-GPU working directory.
 4. Run the software by calling `python iam_lots_gpu.py` on the terminal.
 5. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
@@ -108,15 +108,15 @@ pip3 install -r environments/requirements_pip3.txt
 2. Run the software by calling `python iam_lots_gpu.py` on the terminal.
 3. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
 
-### 2.1 Changing Software's Parameters
+### 2.1 Expected Output
+
+### 2.2 Changing Software's Parameters
 
 Bla bla bla
 
-### 2.2 Changing CSV File - Batch Processing
+### 2.3 Changing CSV File - Batch Processing
 
 Bla bla bla
-
-### 2.3 Expected Output
 
 ### 3. How it works
 
