@@ -98,7 +98,7 @@ pip3 install -r environments/requirements_pip3.txt
 
 **Miniconda (command line):** Please follow instructions below to run the project via miniconda/command line.
 1. Open Terminal (Linux) or Anaconda Prompt (Win).
-2. Activate the virtual environment calling `source activate IAM_GPU_LINUX_mini` (Linux) or `activate myenv` (Win).
+2. Activate the virtual environment by calling `source activate IAM_GPU_LINUX_mini` (Linux) or `activate IAM_GPU_LINUX_mini` (Win).
 3. Go to LOTS-IAM-GPU working directory.
 4. Run the software by calling `python iam_lots_gpu.py` on the terminal.
 5. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
