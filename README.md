@@ -1,18 +1,12 @@
 # LOTS-IAM-GPU
 LOTS-IAM-GPU is a fast and fully-automatic unsupervised detection of irregular textures of white matter hyperintensities (i.e. WMH) on brain MRI. LOTS-IAM-GPU is an abbreviation of Limited One-time Sampling Irregularity Age Map (LOTS-IAM) on GPU.
 
-## A. Introduction
+## 1. Instruction of Installation
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### 1. Installation
-
-Clone the project from:
-
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Please clone/download the project from:
 ```
 https://github.com/iboele/lots-iam-gpu
 ```
-After cloning the project, the dependencies can be installed as described in the next sections.
 
 ### 1.1 Required Libraries
 
@@ -27,12 +21,13 @@ The project is written in Python (3.6.5). Below is the list of minimum prerequis
 - [NumPy (1.14.2)](http://www.numpy.org/): General purpose array-processing package.
 - [Cuda Toolkit](https://developer.nvidia.com/cuda-downloads): CUDA Toolkit for parallel programming.
 
-
-#### 1.3 GPU Processing
+### 1.2 GPU Processing
 
 First of all, you should make sure that Nvidia's CUDA Toolkit has been installed in your local machine. Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) that compatible with your GPU and OS.
 
-#### 1.3.1 Running on virtual environment of conda (Linux/Windows) [RECOMMENDED]
+### 1.3 Installing Required Libraries
+
+#### 1.3.1 Installing on virtual environment of conda (Linux/Windows) [RECOMMENDED]
 
 We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu/tree/master/environments) folder which can be used to activate a virtual environment for running LOTS-IAM-GPU in Linux/Windows.
 
@@ -56,11 +51,11 @@ After importing the environment file, you should be able to see the imported env
 1. For **Anaconda Navigator**, please follow [these instructions](https://docs.anaconda.com/anaconda/navigator/tutorials/manage-environments#using-an-environment).
 2. For **miniconda**, please follow [these instructions](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment). Example: `source activate IAM_GPU_LINUX_mini`.
 
-By activating the provided environment, you should be able to run the project (if only if you have installed [CUDA Toolkit](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#gpu-processing) in your machine). To deactivate (i.e. unload) an active environment running on terminal, call `source deactivate env_name`.
+By activating the provided environment, you should be able to run the project (if only if you have installed [CUDA Toolkit](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#gpu-processing) in your machine). To deactivate (i.e. unload) an active environment running on terminal, call `source deactivate`.
 
 If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
 
-#### 1.3.2 Running on your local machine (Linux)
+#### 1.2.2 Installing on your local machine (Linux)
 
 If you would like to run the LOTS-IAM-GPU on your machine, you could easily do that by installing all of required libraries on your local machine. If you are not sure how to do it, please follow instructions below.
 
@@ -83,8 +78,7 @@ conda install --file environments/requirements_conda.txt
 pip3 install -r environments/requirements_pip3.txt
 ```
 
-
-## 2 Running the Software
+## 2. Running the Software
 
 Explain how to run the automated tests for this system
 
