@@ -188,6 +188,9 @@ Figure 1: Flow of one slice of MRI data processed by LOTS-IAM-GPU.
 
 ### 4. Expected Performance
 
+![alt text](documentation/iam-vs-others-vis.png "Visualisation of LOTS-IAM vs. others")
+Figure 2: Visualisation of WMH produced by LOTS-IAM compare to other methods.
+
 ### 5. License
 
 This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
