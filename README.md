@@ -189,7 +189,7 @@ Figure 1: Flow of one slice of MRI data processed by LOTS-IAM-GPU.
 ### 4. Expected Performance
 
 ![alt text](documentation/iam-vs-others-vis.png "Visualisation of LOTS-IAM vs. others")
-Figure 2: Visualisation of WMH produced by LOTS-IAM compare to other methods.
+Figure 2: Visualisation of WMH produced by LOTS-IAM compare to other methods, which are the [DeepMedic](https://github.com/Kamnitsask/deepmedic), U-Net based deep neural networks, [LST-LGA](http://www.applied-statistics.de/lst.html), and minimum variance quantization with 100 levels (MVQ-100). The DeepMedic and U-Net are supervised deep neural networks methods whereas LOTS-IAM(-GPU), LST-LGA, and MVQ-100 are unsupervised methods.
 
 ### 5. License
 
