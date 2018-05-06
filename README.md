@@ -188,16 +188,22 @@ Figure 1: Flow of one slice of MRI data processed by LOTS-IAM-GPU.
 
 ### 4. Expected Performance
 
+The biggest different between LOTS-IAM-GPU and other WMH segmentation methods are their respective results. Most of WMH segmentation methods produce probability values for all voxels as white matter hyperintensities (WMH), i.e. a voxel has a high probability value if the chance of it as WMH is high. On other hand, LOTS-IAM-GPU produces age values for all voxels which explain each voxel's irregularity (i.e. level of damage of each voxel) compare to other voxels in the brain. Thus, LOTS-IAM-GPU produces richer information of WMH than other WMH segmentation methods. Visualisation of the LOTS-IAM-GPU and other WMH segmentation methods can be seen in Figure 2 below.
+
 ![alt text](documentation/iam-vs-others-vis.png "Visualisation of LOTS-IAM vs. others")
-Figure 2: Visualisation of WMH produced by LOTS-IAM compare to other methods, which are the [DeepMedic](https://github.com/Kamnitsask/deepmedic), U-Net based deep neural networks, [LST-LGA](http://www.applied-statistics.de/lst.html), and minimum variance quantization with 100 levels (MVQ-100). The DeepMedic and U-Net are supervised deep neural networks methods whereas LOTS-IAM(-GPU), LST-LGA, and MVQ-100 are unsupervised methods.
+Figure 2: Visualisation of probabilistic values of WMH produced by LOTS-IAM compare to other methods, which are the [DeepMedic](https://github.com/Kamnitsask/deepmedic), U-Net based deep neural networks, [LST-LGA](http://www.applied-statistics.de/lst.html), and minimum variance quantization with 100 levels (MVQ-100). The DeepMedic and U-Net are supervised deep neural networks methods whereas LOTS-IAM(-GPU), LST-LGA, and MVQ-100 are unsupervised methods.
 
-### 5. License
+### 5. Conclusion
 
-This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
+
 
 ## Authors
 
 * febrianrachmadi
+
+## License
+
+This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
