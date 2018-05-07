@@ -1,5 +1,6 @@
 
 
+
 # LOTS-IAM-GPU
 
 LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection of irregular textures of white matter hyperintensities (WMH) on brain FLAIR MRI. Unlike other recently proposed methods for doing WMH segmentation, LOTS-IAM-GPU does not need any manual labelling of the WMH. Instead, LOTS-IAM-GPU only needs brain masks to exclude non-brain tissues (e.g. ICV mask, CSF mask and NAWM mask).
@@ -17,28 +18,28 @@ If you think that this work helps your work/research, please do cite our publica
 [1]
 
 ### Table of Contents
- - [Introduction](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#lots-iam-gpu)
+ - [Introduction](https://github.com/febrianrachmadi/lots-iam-gpu#lots-iam-gpu)
 	 - [Release Notes](https://github.com/febrianrachmadi/lots-iam-gpu#release-notes)
 	 - [Citations](https://github.com/febrianrachmadi/lots-iam-gpu#citations)
- - [1. Installation](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#1-installation)
-	 - [1.1. Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#11-required-libraries)
-	 - [1.2. GPU Processing](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#12-gpu-processing)
-	 - [1.3. Installing Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#13-installing-required-libraries)
-		 - [1.3.1. Installing on virtual environment of conda (Linux Ubuntu 16.04/Windows) [RECOMMENDED]](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)
-		 - [1.3.2. Installing on your local machine (Linux)](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#132-installing-on-your-local-machine-linux)
- - [2. Usage](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#2-usage)
-	 - [2.1. Running the Software](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#21-running-the-software)
-	 - [2.2. Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#22-output)
-	 - [2.3. Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters)
-	 - [2.4. Changing the CSV Input File - List of MRI datasets to be processed](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed)
-	 - [2.5. Main Function of the LOTS-IAM-GPU](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#25-main-function-of-the-lots-iam-gpu)
- - [3. How the LOTS-IAM-GPU works](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#3-how-the-lots-iam-gpu-works)
- - [4. Expected Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#4-expected-output)
- - [5. Conclusion](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#5-conclusion)
- - [Authors](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#authors)
- - [License](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#license)
- - [Acknowledgments](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#acknowledgments)
- - [References](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#references)
+ - [1. Installation](https://github.com/febrianrachmadi/lots-iam-gpu#1-installation)
+	 - [1.1. Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu#11-required-libraries)
+	 - [1.2. GPU Processing](https://github.com/febrianrachmadi/lots-iam-gpu#12-gpu-processing)
+	 - [1.3. Installing Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu#13-installing-required-libraries)
+		 - [1.3.1. Installing on virtual environment of conda (Linux Ubuntu 16.04/Windows) [RECOMMENDED]](https://github.com/febrianrachmadi/lots-iam-gpu#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)
+		 - [1.3.2. Installing on your local machine (Linux)](https://github.com/febrianrachmadi/lots-iam-gpu#132-installing-on-your-local-machine-linux)
+ - [2. Usage](https://github.com/febrianrachmadi/lots-iam-gpu#2-usage)
+	 - [2.1. Running the Software](https://github.com/febrianrachmadi/lots-iam-gpu#21-running-the-software)
+	 - [2.2. Output](https://github.com/febrianrachmadi/lots-iam-gpu#22-output)
+	 - [2.3. Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu#23-changing-softwares-parameters)
+	 - [2.4. Changing the CSV Input File - List of MRI datasets to be processed](https://github.com/febrianrachmadi/lots-iam-gpu#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed)
+	 - [2.5. Main Function of the LOTS-IAM-GPU](https://github.com/febrianrachmadi/lots-iam-gpu#25-main-function-of-the-lots-iam-gpu)
+ - [3. How the LOTS-IAM-GPU works](https://github.com/febrianrachmadi/lots-iam-gpu#3-how-the-lots-iam-gpu-works)
+ - [4. Expected Output](https://github.com/febrianrachmadi/lots-iam-gpu#4-expected-output)
+ - [5. Conclusion](https://github.com/febrianrachmadi/lots-iam-gpu#5-conclusion)
+ - [Authors](https://github.com/febrianrachmadi/lots-iam-gpu#authors)
+ - [License](https://github.com/febrianrachmadi/lots-iam-gpu#license)
+ - [Acknowledgments](https://github.com/febrianrachmadi/lots-iam-gpu#acknowledgments)
+ - [References](https://github.com/febrianrachmadi/lots-iam-gpu#references)
 
 ## 1. Installation
 
@@ -67,8 +68,8 @@ First of all, you should make sure that Nvidia's CUDA Toolkit has been installed
 ### 1.3. Installing Required Libraries
 
 You have two options to install the project on your machine:
-1. Installing and running LOTS-IAM-GPU on top of virtual environment (tested on Ubuntu 16.04/Windows) [[Section 1.3.1](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)].
-2. Installing and running LOTS-IAM-GPU directly on your local machine (tested on Ubuntu 16.04) [[Section 1.3.2](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#132-installing-on-your-local-machine-linux)].
+1. Installing and running LOTS-IAM-GPU on top of virtual environment (tested on Ubuntu 16.04/Windows) [[Section 1.3.1](https://github.com/febrianrachmadi/lots-iam-gpu#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)].
+2. Installing and running LOTS-IAM-GPU directly on your local machine (tested on Ubuntu 16.04) [[Section 1.3.2](https://github.com/febrianrachmadi/lots-iam-gpu#132-installing-on-your-local-machine-linux)].
 
 **Note:** Please make sure that Python3 has been installed in your local machine before continuing (recommended).
 
@@ -102,7 +103,7 @@ After importing the environment file, you should be able to see the imported env
     source activate IAM_GPU_LINUX_mini
     ```
 
-By activating the provided environment, you should be able to run the project (if only if you have installed [CUDA Toolkit](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#gpu-processing) in your machine). To deactivate (i.e. unload) an active environment running on terminal, call `source deactivate`.
+By activating the provided environment, you should be able to run the project (if only if you have installed [CUDA Toolkit](https://github.com/febrianrachmadi/lots-iam-gpu#gpu-processing) in your machine). To deactivate (i.e. unload) an active environment running on terminal, call `source deactivate`.
 
 If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
 
@@ -157,7 +158,7 @@ If you would like to run the LOTS-IAM-GPU on your machine, you could easily do t
 
 ### 2.2. Output
 
-The software will automatically create a new folder named `results` in the working folder (default). Inside this folder, each experiment will have its own folder to save results produced by LOTS-IAM-GPU's method. The experiment output folder name's follows convention of `experiment_name`*_*`number_of_samples`. To change experiment's name and number of samples, please see [Section 2.3. Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters).
+The software will automatically create a new folder named `results` in the working folder (default). Inside this folder, each experiment will have its own folder to save results produced by LOTS-IAM-GPU's method. The experiment output folder name's follows convention of `experiment_name`*_*`number_of_samples`. To change experiment's name and number of samples, please see [Section 2.3. Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu#23-changing-softwares-parameters).
 
 Inside the experiment's folder, each patient/MRI data will have its own folder. In default, there are 6 sub-folders which are:
 1. **1**: Contains age maps of each slice (normalised to 0-1) generated by using 1x1 patch. Saved in `.mat` format (Matlab).
@@ -210,7 +211,7 @@ User can change these parameters via [`iam_params.py`](https://github.com/febria
 
 **Important notes:** Some more explanations regarding of changeable parameters.
 1. Parameter `output_filedir`: Its value should follow this convention: `output_path`/`name_of_experiment`.
-2. Parameter `csv_filename`: Its value should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.4](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
+2. Parameter `csv_filename`: Its value should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.4](https://github.com/febrianrachmadi/lots-iam-gpu#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
 3. Parameter `save_jpeg`: Input value `False` if you do not want to save JPEG visualisation files.
 4. Parameter`patch_size`: Its value controls the sizes of source/target patches used in the computation. The default value is a python list `[1,2,3,4]` i.e. translated to `1 x 1`, `2 x 2`, `4 x 4`, and `8 x 8` source/target patches. If user input only one number (e.g. `[2]`), then LOTS-IAM-GPU will do computation by using `2 x 2` source/target patch only. ***NOTE**:  Feel free to use different number of source/target patches, but other than these four numbers, it is not guaranteed that the software will finish the computation without any trouble.*
 5. Parameter`blending_weights`: Its value controls blending weights used for blending all age maps produced by different size of source/target patches. The weights must be the form of python's list, summed to 1, and its length must be the same as `patch_size` variable.
@@ -221,7 +222,7 @@ User can change these parameters via [`iam_params.py`](https://github.com/febria
 
 ### 2.4. Changing the CSV Input File - List of MRI datasets to be processed
 
-A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method. The default name of the CSV file is [`IAM_GPU_pipeline_test_v2.csv`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv). Feel free to edit or make a new CSV input file as long as following the convention below. If you make a new CSV input file, do not forget to change software's input parameters (see [Section 2.3](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters)).
+A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method. The default name of the CSV file is [`IAM_GPU_pipeline_test_v2.csv`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv). Feel free to edit or make a new CSV input file as long as following the convention below. If you make a new CSV input file, do not forget to change software's input parameters (see [Section 2.3](https://github.com/febrianrachmadi/lots-iam-gpu#23-changing-softwares-parameters)).
 
 | Path to MRI's folder | Names of MRI data | Path to FLAIR NIfTI files | Path to ICV NIfTI files | Path to CSF NIfTI files | Path to NAWM NIfTI files |
 |:--------------------:|:-------------:|:--------------------:|:------------------:|:------------------:|:-------------------:|
@@ -240,7 +241,7 @@ The main function of the LOTS-IAM-GPU is located in [`IAM_GPU_lib.py`](https://g
 
 ### 3. How the LOTS-IAM-GPU works
 
-The key idea of the LOTS-IAM is treating hyperintensities of the FLAIR MRI as irregular textures as in [[1]](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#references). To do this, there are at least four steps to complete the LOTS-IAM's computation which are listed below.
+The key idea of the LOTS-IAM is treating hyperintensities of the FLAIR MRI as irregular textures as in [[1]](https://github.com/febrianrachmadi/lots-iam-gpu#references). To do this, there are at least four steps to complete the LOTS-IAM's computation which are listed below.
 
  1. Data preparation: Masking out unneeded area of the brain (i.e. pre-processing).
  2. Patch generation: Generting source patches and target patches.
@@ -288,3 +289,4 @@ This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICE
 ## References
 
  1. Bellini, R., Kleiman, Y., & Cohen-Or, D. (2016). Time-varying weathering in texture space. _ACM Transactions on Graphics (TOG)_, _35_(4), 141.
+ 
