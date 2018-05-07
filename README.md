@@ -23,7 +23,7 @@ If you think that this work helps your work/research, please do cite our publica
 		 - [1.3.2. Installing on your local machine (Linux)](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#132-installing-on-your-local-machine-linux)
  - [2.Usage](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#2-usage)
 	 - [2.1. Running the Software](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#21-running-the-software)
-	 - [2.2. Expected Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#22-expected-output)
+	 - [2.2. Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#22-output)
 	 - [2.3. Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters)
 	 - [2.4. Changing the CSV Input File - List of MRI datasets to be processed](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed)
  - [3.How the LOTS-IAM-GPU works](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#3-how-the-lots-iam-gpu-works)
@@ -32,7 +32,7 @@ If you think that this work helps your work/research, please do cite our publica
  - [Authors](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#authors)
  - [License](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#license)
  - [Acknowledgments](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#acknowledgments)
- - References
+ - [References](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#references)
 
 ## 1. Installation
 
@@ -149,7 +149,7 @@ If you would like to run the LOTS-IAM-GPU on your machine, you could easily do t
 2. Run the software by calling `python iam_lots_gpu.py` on the terminal.
 3. The results should be saved in a new folder named `results` inside the LOTS-IAM-GPU working folder.
 
-### 2.2. Expected Output
+### 2.2. Output
 
 The software will automatically create a new folder named `results` in the working folder (default). Inside this folder, each experiment will have its own folder to save results produced by LOTS-IAM-GPU's method. The experiment output folder name's follows convention of `experiment_name`*_*`number_of_samples`. To change experiment's name and number of samples, please see [Section 2.3. Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters).
 
@@ -216,7 +216,7 @@ A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method
 
 ### 3. How the LOTS-IAM-GPU works
 
-The key idea of the LOTS-IAM is treating hyperintensities of the FLAIR MRI as irregular textures as in [1]. To do this, there are at least four steps to complete the LOTS-IAM's computation which are listed below.
+The key idea of the LOTS-IAM is treating hyperintensities of the FLAIR MRI as irregular textures as in [[1]](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#references). To do this, there are at least four steps to complete the LOTS-IAM's computation which are listed below.
 
  1. Data preparation: Masking out unneeded area of the brain (i.e. pre-processing).
  2. Patch generation: Generting source patches and target patches.
