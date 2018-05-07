@@ -9,6 +9,8 @@ LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection of irregular
 ### Release Notes
 Versioning Name -- dd/mm/yyyy (va.b.c):
  1. 07/05/2018 (v0.5.0):
+     * Updating the initial codes.
+     * Making the code more readable.
 
 ### Citations
 If you think that this work helps your work/research, please do cite our publications below.
@@ -16,8 +18,8 @@ If you think that this work helps your work/research, please do cite our publica
 
 ### Table of Contents
  - [Introduction](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#lots-iam-gpu)
-	 - [Release Notes]()
-	 - [Citations]()
+	 - [Release Notes](https://github.com/febrianrachmadi/lots-iam-gpu#release-notes)
+	 - [Citations](https://github.com/febrianrachmadi/lots-iam-gpu#citations)
  - [1. Installation](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#1-installation)
 	 - [1.1. Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#11-required-libraries)
 	 - [1.2. GPU Processing](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#12-gpu-processing)
@@ -29,7 +31,7 @@ If you think that this work helps your work/research, please do cite our publica
 	 - [2.2. Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#22-output)
 	 - [2.3. Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters)
 	 - [2.4. Changing the CSV Input File - List of MRI datasets to be processed](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed)
-	 - [2.5. Main Function of the LOTS-IAM-GPU]()
+	 - [2.5. Main Function of the LOTS-IAM-GPU](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#25-main-function-of-the-lots-iam-gpu)
  - [3. How the LOTS-IAM-GPU works](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#3-how-the-lots-iam-gpu-works)
  - [4. Expected Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#4-expected-output)
  - [5. Conclusion](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#5-conclusion)
@@ -234,7 +236,7 @@ A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method
 
 ### 2.5. Main Function of the LOTS-IAM-GPU
 
-The main function of the LOTS-IAM-GPU is located in `IAM_GPU_lib.py`, which is named `iam_lots_gpu_compute`. You can call function's `help` by calling `help(iam_lots_gpu_compute)` inside Python kernel.
+The main function of the LOTS-IAM-GPU is located in [`IAM_GPU_lib.py`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_lib.py), which is named `iam_lots_gpu_compute`. You can call function's `help` by calling `help(iam_lots_gpu_compute)` inside Python kernel.
 
 ### 3. How the LOTS-IAM-GPU works
 
