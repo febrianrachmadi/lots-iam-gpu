@@ -1,4 +1,5 @@
 
+
 # LOTS-IAM-GPU
 
 LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection of irregular textures of white matter hyperintensities (WMH) on brain FLAIR MRI. Unlike other recently proposed methods for doing WMH segmentation, LOTS-IAM-GPU does not need any manual labelling of the WMH. Instead, LOTS-IAM-GPU only needs brain masks to exclude non-brain tissues (e.g. ICV mask, CSF mask and NAWM mask).
@@ -6,6 +7,8 @@ LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection of irregular
 **Note:** LOTS-IAM-GPU is an abbreviation of Limited One-time Sampling Irregularity Age Map (LOTS-IAM) implemented on GPU.
 
 ### Release Notes
+Versioning Name -- dd/mm/yyyy (va.b.c):
+ 1. 07/05/2018 (v0.5.0):
 
 ### Citations
 If you think that this work helps your work/research, please do cite our publications below.
@@ -13,22 +16,23 @@ If you think that this work helps your work/research, please do cite our publica
 
 ### Table of Contents
  - [Introduction](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#lots-iam-gpu)
-	 - Release Notes
-	 - Citations
- - [1.Installation](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#1-installation)
+	 - [Release Notes]()
+	 - [Citations]()
+ - [1. Installation](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#1-installation)
 	 - [1.1. Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#11-required-libraries)
 	 - [1.2. GPU Processing](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#12-gpu-processing)
 	 - [1.3. Installing Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#13-installing-required-libraries)
 		 - [1.3.1. Installing on virtual environment of conda (Linux Ubuntu 16.04/Windows) [RECOMMENDED]](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)
 		 - [1.3.2. Installing on your local machine (Linux)](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#132-installing-on-your-local-machine-linux)
- - [2.Usage](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#2-usage)
+ - [2. Usage](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#2-usage)
 	 - [2.1. Running the Software](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#21-running-the-software)
 	 - [2.2. Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#22-output)
 	 - [2.3. Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters)
 	 - [2.4. Changing the CSV Input File - List of MRI datasets to be processed](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed)
- - [3.How the LOTS-IAM-GPU works](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#3-how-the-lots-iam-gpu-works)
- - [4.Expected Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#4-expected-output)
- - [5.Conclusion](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#5-conclusion)
+	 - [2.5. Main Function of the LOTS-IAM-GPU]()
+ - [3. How the LOTS-IAM-GPU works](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#3-how-the-lots-iam-gpu-works)
+ - [4. Expected Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#4-expected-output)
+ - [5. Conclusion](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#5-conclusion)
  - [Authors](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#authors)
  - [License](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#license)
  - [Acknowledgments](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#acknowledgments)
@@ -163,12 +167,12 @@ Inside the experiment's folder, each patient/MRI data will have its own folder. 
     * **Combined**: contains visualisation of the final output of LOTS-IAM-GPU's computation in `JPEG` files and a `.mat` file.
 6. **IAM_GPU_nifti_python**: Contains three NIfTI files (`.nii.gz`):
     * `IAM_GPU_COMBINED.nii.gz`: the original age map values, 
-    * `IAM_GPU_GN.nii.gz`: the final age map values (i.e. global normalisation and penalty), and the
+    * `IAM_GPU_GN.nii.gz`: the final age map values (i.e. global normalisation and penalty), and
     * `IAM_GPU_GN_postprocessed.nii.gz`: the final age map values plus post-processing.
 
 ### 2.3. Changing Software's Parameters
 
-In default, there are five paramaters that can be easily changed by the user (listed below).
+In default, there are six parameters that can be easily changed by the user (listed below).
 
 ```python
 ## General output full path (note to user: you can change this variable)
@@ -180,12 +184,20 @@ csv_filename = "IAM_GPU_pipeline_test_v2.csv"
 # Save JPEG outputs
 save_jpeg = True
 
-## Size of source and target patches
+## Size of source and target patches.
+## Must be in the form of python's list data structure.
 ## Default: patch_size = [1,2,4,8]
 patch_size = [1,2,4,8]
 
-## Number of samples used for LOTS-IAM calculation 
+## Weights for age map blending produced by different size of source/target patches
+## Must be in the form of python's list data structure.
+## Its length must be the same as 'patch_size' variable.
+## Default: blending_weights = [0.65,0.2,0.1,0.05]
+blending_weights = [0.65,0.2,0.1,0.05]
+
+## Used only for automatic calculation for all number of samples
 ## NOTE: Smaller number of samples makes computation faster (please refer to the manuscript).
+## Samples used for IAM calculation 
 ## Default: num_samples_all = [512]
 num_samples_all = [64]
 ## Uncomment line below and comment line above if you want to run all different number of samples 
@@ -195,9 +207,15 @@ num_samples_all = [64]
 User can change these parameters via [`iam_params.py`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) file or the second active cell in [`LOTS_IAM_GPU_release.ipynb`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/LOTS_IAM_GPU_release.ipynb) file (Jupyter Notebook user only) before running the software.
 
 **Important notes:** Some more explanations regarding of changeable parameters.
-1. The parameter of `output_filedir` should follow this convention: `output_path`/`name_of_experiment`.
-2. The `csv_filename` parameter should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.4](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
-3. Change the value of `save_jpeg` parameter to `False` if you do not want to save JPEG visualisation files.
+1. Parameter `output_filedir`: Its value should follow this convention: `output_path`/`name_of_experiment`.
+2. Parameter `csv_filename`: Its value should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.4](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
+3. Parameter `save_jpeg`: Input value `False` if you do not want to save JPEG visualisation files.
+4. Parameter`patch_size`: Its value controls the sizes of source/target patches used in the computation. The default value is a python list `[1,2,3,4]` i.e. translated to `1 x 1`, `2 x 2`, `4 x 4`, and `8 x 8` source/target patches. If user input only one number (e.g. `[2]`), then LOTS-IAM-GPU will do computation by using `2 x 2` source/target patch only. ***NOTE**:  Feel free to use different number of source/target patches, but other than these four numbers, it is not guaranteed that the software will finish the computation without any trouble.*
+5. Parameter`blending_weights`: Its value controls blending weights used for blending all age maps produced by different size of source/target patches. The weights must be the form of python's list, summed to 1, and its length must be the same as `patch_size` variable.
+6. Parameter `num_samples_all`: A list of numbers used for randomly sampling target patches to be used in the calculation of LOTS-IAM-GPU. Some fixed and limited numbers of target patches are available to be used by user, which are 64, 128, 256, 512, 1024, 2048. These numbers are chosen to make GPU's memory management easier. ***Some important notes regarding of this parameter are***:
+    * Smaller number will make computation faster.
+    * Input the numbers as a list to automatically produce age maps from all different numbers of target patches. The software will automatically create different output folders.
+    * For this version, only 64, 128, 256, 512, 1024, and 2048 can be used as input numbers (error will be raised if other numbers are used).
 
 ### 2.4. Changing the CSV Input File - List of MRI datasets to be processed
 
@@ -213,6 +231,10 @@ A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method
 **Important notes on the CSV input file:**
 1. You **MUST NOT** include the first line of example above ([please see the actual example of the CSV file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv)).
 2. Currently, only NIfTI files that could be processed by the LOTS-IAM-GPU.
+
+### 2.5. Main Function of the LOTS-IAM-GPU
+
+The main function of the LOTS-IAM-GPU is located in `IAM_GPU_lib.py`, which is named `iam_lots_gpu_compute`. You can call function's `help` by calling `help(iam_lots_gpu_compute)` inside Python kernel.
 
 ### 3. How the LOTS-IAM-GPU works
 
@@ -249,7 +271,7 @@ Febrian Rachmadi
 
 ## Authors
 
-* febrianrachmadi - Main Author of the LOTS-IAM-GPU.
+* Febrian Rachmadi - Main Author of the LOTS-IAM-GPU.
 
 ## License
 
@@ -260,7 +282,6 @@ This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICE
 * [School of Informatics, The University of Edinburgh](https://www.ed.ac.uk/informatics)
 * [Centre for Clinical Brain Sciences, The University of Edinburgh](https://www.ed.ac.uk/clinical-brain-sciences)
 * [LPDP | Indonesia Endowment Fund for Education - Minsitry of Finance, Republic of Indonesia](https://www.lpdp.kemenkeu.go.id/)
-
 
 ## References
 
