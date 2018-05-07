@@ -1,9 +1,42 @@
+
 # LOTS-IAM-GPU
-LOTS-IAM-GPU is a fast and fully-automatic unsupervised detection of irregular textures of white matter hyperintensities (i.e. WMH) on brain MRI. LOTS-IAM-GPU is an abbreviation of Limited One-time Sampling Irregularity Age Map (LOTS-IAM) on GPU.
+
+LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection of irregular textures of white matter hyperintensities (WMH) on brain FLAIR MRI. Unlike other recently proposed methods for doing WMH segmentation, LOTS-IAM-GPU does not need any manual labelling of the WMH. Instead, LOTS-IAM-GPU only needs brain masks to exclude non-brain tissues (e.g. ICV mask, CSF mask and NAWM mask).
+
+**Note:** LOTS-IAM-GPU is an abbreviation of Limited One-time Sampling Irregularity Age Map (LOTS-IAM) implemented on GPU.
+
+### Release Notes
+
+### Citations
+If you think that this work helps your work/research, please do cite our publications below.
+[1]
+
+### Table of Contents
+ - [Introduction](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#lots-iam-gpu)
+	 - Release Notes
+	 - Citations
+ - [1.Installation](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#1-installation)
+	 - [1.1. Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#11-required-libraries)
+	 - [1.2. GPU Processing](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#12-gpu-processing)
+	 - [1.3. Installing Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#13-installing-required-libraries)
+		 - [1.3.1. Installing on virtual environment of conda (Linux Ubuntu 16.04/Windows) [RECOMMENDED]](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)
+		 - [1.3.2. Installing on your local machine (Linux)](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#132-installing-on-your-local-machine-linux)
+ - [2.Usage](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#2-usage)
+	 - [2.1. Running the Software](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#21-running-the-software)
+	 - [2.2. Expected Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#22-expected-output)
+	 - [2.3. Changing Software's Parameters](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#23-changing-softwares-parameters)
+	 - [2.4. Changing the CSV Input File - List of MRI datasets to be processed](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed)
+ - [3.How the LOTS-IAM-GPU works](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#3-how-the-lots-iam-gpu-works)
+ - [4.Expected Output](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#4-expected-output)
+ - [5.Conclusion](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#5-conclusion)
+ - [Authors](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#authors)
+ - [License](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#license)
+ - [Acknowledgments](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/README.md#acknowledgments)
+ - References
 
 ## 1. Installation
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Please clone/download the project from:
+These instructions will get you a copy of the software up and running on your local machine or virtual environment for development and testing purposes. Please clone/download the project from:
 ```
 https://github.com/febrianrachmadi/lots-iam-gpu
 ```
@@ -23,7 +56,7 @@ The project is written in Python3. Below is the list of minimum prerequisites fo
 
 ### 1.2. GPU Processing
 
-First of all, you should make sure that Nvidia's CUDA Toolkit has been installed in your local machine. Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) that compatible with your GPU and OS.
+First of all, you should make sure that Nvidia's CUDA Toolkit has been installed in your local machine. Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) compatible with your GPU and OS.
 
 ### 1.3. Installing Required Libraries
 
@@ -183,23 +216,40 @@ A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method
 
 ### 3. How the LOTS-IAM-GPU works
 
+The key idea of the LOTS-IAM is treating hyperintensities of the FLAIR MRI as irregular textures as in [1]. To do this, there are at least four steps to complete the LOTS-IAM's computation which are listed below.
+
+ 1. Data preparation: Masking out unneeded area of the brain (i.e. pre-processing).
+ 2. Patch generation: Generting source patches and target patches.
+ 3. Age value calculation: Calculating age value by using a distance function.
+ 4. Final age map generation: Calculating penalty, global normalisation, and post-processing.
+
+To understand LOTS-IAM's computation, one should understand two different types of patches, which are *source patches* and *target patches*. *Source patches* are the non-overlapping grid-patches of brain tissues (i.e. inside intracranial volume (ICV) and outside cerebrospinal fluid (CSF) brain masks). Whereas, *target patches* are randomly sampled patches from all possible overlapping patches which come from the same slice (also need to be inside ICV mask and outside CSF mask). *Age value* is then calculated between ***all** source patches* and ***some of the** target patches* by using a distance function to create *age maps* of all slices of MR image. 
+
+Because of the nature of LOTS-IAM's computation, hundreds (if not thousands) of source patches need to be compared/calculated with thousands of target patches. Thus, implementation of LOTS-IAM on GPU is needed to speed up its computation. Based on our experiments, implementation of LOTS-IAM on GPU speeds up the computation by over 13.5 times without having any drawback on the quality of the results. The summary and flow of the LOTS-IAM-GPU's computation can be seen in Figure 1 below. If you are interested to learn more about the LOTS-IAM-GPU, feel free to read extended explanation and experiments of the method in our publications.
+
 ![alt text](documentation/LOTS-IAM-Illustration.png "LOTS-IAM_GPU Method in Summary")
 Figure 1: Flow of one slice of MRI data processed by LOTS-IAM-GPU.
 
-### 4. Expected Performance
+### 4. Expected Output
 
-The biggest different between LOTS-IAM-GPU and other WMH segmentation methods are their respective results. Most of WMH segmentation methods produce probability values for all voxels as white matter hyperintensities (WMH), i.e. a voxel has a high probability value if the chance of it as WMH is high. On other hand, LOTS-IAM-GPU produces age values for all voxels which explain each voxel's irregularity (i.e. level of damage of each voxel) compare to other voxels in the brain. Thus, LOTS-IAM-GPU produces richer information of WMH than other WMH segmentation methods. Visualisation of the LOTS-IAM-GPU and other WMH segmentation methods can be seen in Figure 2 below.
+The biggest different between LOTS-IAM-GPU and other WMH segmentation methods are their respective results. Most of WMH segmentation methods produce probability values of all voxels as white matter hyperintensities (WMH) (i.e. a voxel has a high probability value if the chance of it as WMH is high). On other hand, LOTS-IAM-GPU produces age values of all voxels which explain each voxel's irregularity (i.e. level of damage of each voxel) compare to other voxels in the brain. Thus, LOTS-IAM-GPU produces richer information of WMH than other WMH segmentation methods, especially when many WMH segmentation methods cut off the probability values to become binary segmentation. Visualisation of the LOTS-IAM-GPU and other WMH segmentation methods can be seen in Figure 2 below.
 
 ![alt text](documentation/iam-vs-others-vis.png "Visualisation of LOTS-IAM vs. others")
 Figure 2: Visualisation of probabilistic values of WMH produced by LOTS-IAM compare to other methods, which are the [DeepMedic](https://github.com/Kamnitsask/deepmedic), U-Net based deep neural networks, [LST-LGA](http://www.applied-statistics.de/lst.html), and minimum variance quantization with 100 levels (MVQ-100). The DeepMedic and U-Net are supervised deep neural networks methods whereas LOTS-IAM(-GPU), LST-LGA, and MVQ-100 are unsupervised methods.
 
 ### 5. Conclusion
 
+In recent years, the development of unsupervised detection methods of hyperintensities in brain MRI is slower than the supervised methods, especially after the usage of *state-of-the-art* deep neural networks methods in biomedical image processing and analysis. However, we believe that unsupervised methods have its own place in biomedical image analysis because its independency. Whilst  supervised methods depend on the quality and amount of expert labelled data similar to the sample to be used, LOTS-IAM-GPU and other unuspervised methods do not need training and is independent from imaging protocols and sample characteristics.
 
+By making the LOTS-IAM-GPU publicly available, we hope that it can be used as **a new baseline method of unsupervised WMH segmentation**. We will keep updating the LOTS-IAM-GPU in the next future as well as making it more modular so that different pre-/post-processing processes could be easily incorporated by users. Please, feel free to ask any question or give feedback to improve LOTS-IAM-GPU's usage.
+
+Best wishes,
+
+Febrian Rachmadi
 
 ## Authors
 
-* febrianrachmadi
+* febrianrachmadi - Main Author of the LOTS-IAM-GPU.
 
 ## License
 
@@ -210,3 +260,8 @@ This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICE
 * [School of Informatics, The University of Edinburgh](https://www.ed.ac.uk/informatics)
 * [Centre for Clinical Brain Sciences, The University of Edinburgh](https://www.ed.ac.uk/clinical-brain-sciences)
 * [LPDP | Indonesia Endowment Fund for Education - Minsitry of Finance, Republic of Indonesia](https://www.lpdp.kemenkeu.go.id/)
+
+
+## References
+
+ 1. Bellini, R., Kleiman, Y., & Cohen-Or, D. (2016). Time-varying weathering in texture space. _ACM Transactions on Graphics (TOG)_, _35_(4), 141.
