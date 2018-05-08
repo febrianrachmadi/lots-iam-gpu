@@ -1,6 +1,3 @@
-
-
-
 # LOTS-IAM-GPU
 
 LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection of irregular textures of white matter hyperintensities (WMH) on brain FLAIR MRI. Unlike other recently proposed methods for doing WMH segmentation, LOTS-IAM-GPU does not need any manual labelling of the WMH. Instead, LOTS-IAM-GPU only needs brain masks to exclude non-brain tissues (e.g. ICV mask, CSF mask and NAWM mask).
@@ -9,13 +6,15 @@ LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection of irregular
 
 ### Release Notes
 Versioning Name -- dd/mm/yyyy (va.b.c):
- 1. 07/05/2018 (v0.5.0):
+ 1. 08/05/2018 (v0.5.3):
      * Updating the initial codes.
      * Making the code more readable.
+     * Add lines to cutting off probability mask and deleting intermediary folders. 
 
 ### Citations
-If you think that this work helps your work/research, please do cite our publications below.
-[1]
+If you find that this work interesting and helps your work/research, please do cite our publications below.
+
+ 1. M. F. Rachmadi, M. d. C. Valdés-Hernández and T. Komura, "Voxel-based irregularity age map (IAM) for brain's white matter hyperintensities in MRI," _2017 International Conference on Advanced Computer Science and Information Systems (ICACSIS)_, Bali, Indonesia, 2017, pp. 321-326.  doi: [10.1109/ICACSIS.2017.8355053](https://doi.org/10.1109/ICACSIS.2017.8355053).
 
 ### Table of Contents
  - [Introduction](https://github.com/febrianrachmadi/lots-iam-gpu#lots-iam-gpu)
@@ -184,9 +183,6 @@ output_filedir = "results/IAM_GPU_pipeline_test"
 ## Name of csv file (note to user: you can change this variable)
 csv_filename = "IAM_GPU_pipeline_test_v2.csv"
 
-# Save JPEG outputs
-save_jpeg = True
-
 ## Size of source and target patches.
 ## Must be in the form of python's list data structure.
 ## Default: patch_size = [1,2,4,8]
@@ -202,23 +198,40 @@ blending_weights = [0.65,0.2,0.1,0.05]
 ## NOTE: Smaller number of samples makes computation faster (please refer to the manuscript).
 ## Samples used for IAM calculation 
 ## Default: num_samples_all = [512]
-num_samples_all = [64]
+num_samples_all = [128, 256]
 ## Uncomment line below and comment line above if you want to run all different number of samples 
 # num_samples_all = [64, 128, 256, 512, 1024, 2048]
+
+## Weight of distance function to blend maximum difference and average difference between source
+## and target patches. Default: alpha=0.5. Input value should be between 0 and 1 (i.e. floating).
+alpha = 0.5
+
+## Threshold value for cutting of probability values of brain masks, if probability masks
+## are given instead of binary masks.
+bin_tresh = 0.5
+
+## Save JPEG outputs
+save_jpeg = True
+
+## Delete all intermediary files/folders, saving some spaces in the hard disk drive.
+delete_intermediary = False
 ```
 
 User can change these parameters via [`iam_params.py`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/iam_params.py) file or the second active cell in [`LOTS_IAM_GPU_release.ipynb`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/LOTS_IAM_GPU_release.ipynb) file (Jupyter Notebook user only) before running the software.
 
 **Important notes:** Some more explanations regarding of changeable parameters.
-1. Parameter `output_filedir`: Its value should follow this convention: `output_path`/`name_of_experiment`.
-2. Parameter `csv_filename`: Its value should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.4](https://github.com/febrianrachmadi/lots-iam-gpu#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
-3. Parameter `save_jpeg`: Input value `False` if you do not want to save JPEG visualisation files.
-4. Parameter`patch_size`: Its value controls the sizes of source/target patches used in the computation. The default value is a python list `[1,2,3,4]` i.e. translated to `1 x 1`, `2 x 2`, `4 x 4`, and `8 x 8` source/target patches. If user input only one number (e.g. `[2]`), then LOTS-IAM-GPU will do computation by using `2 x 2` source/target patch only. ***NOTE**:  Feel free to use different number of source/target patches, but other than these four numbers, it is not guaranteed that the software will finish the computation without any trouble.*
-5. Parameter`blending_weights`: Its value controls blending weights used for blending all age maps produced by different size of source/target patches. The weights must be the form of python's list, summed to 1, and its length must be the same as `patch_size` variable.
-6. Parameter `num_samples_all`: A list of numbers used for randomly sampling target patches to be used in the calculation of LOTS-IAM-GPU. Some fixed and limited numbers of target patches are available to be used by user, which are 64, 128, 256, 512, 1024, 2048. These numbers are chosen to make GPU's memory management easier. ***Some important notes regarding of this parameter are***:
+ 1. **Parameter `output_filedir`**: Its value should follow this convention: `output_path`/`name_of_experiment`.
+ 2. **Parameter `csv_filename`**: Its value should refer to a CSV file which contains a list of MRI datasets that will be processed by the LOTS-IAM-GPU method. Please refer to [Section 2.4](https://github.com/febrianrachmadi/lots-iam-gpu#24-changing-the-csv-input-file---list-of-mri-datasets-to-be-processed) for more detailed explanation.
+ 3. **Parameter`patch_size`**: Its value controls the sizes of source/target patches used in the computation. The default value is a python list `[1,2,3,4]` i.e. translated to `1 x 1`, `2 x 2`, `4 x 4`, and `8 x 8` source/target patches. If user input only one number (e.g. `[2]`), then LOTS-IAM-GPU will do computation by using `2 x 2` source/target patch only. ***NOTE**:  Feel free to use different number of source/target patches, but other than these four numbers, it is not guaranteed that the software will finish the computation without any trouble.*
+ 4. **Parameter`blending_weights`**: Its value controls blending weights used for blending all age maps produced by different size of source/target patches. The weights must be the form of python's list, summed to 1, and its length must be the same as `patch_size` variable.
+ 5. **Parameter** `num_samples_all`: A list of numbers used for randomly sampling target patches to be used in the calculation of LOTS-IAM-GPU. Some fixed and limited numbers of target patches are available to be used by user, which are 64, 128, 256, 512, 1024, 2048. These numbers are chosen to make GPU's memory management easier. ***Some important notes regarding of this parameter are***:
     * Smaller number will make computation faster.
     * Input the numbers as a list to automatically produce age maps from all different numbers of target patches. The software will automatically create different output folders.
     * For this version, only 64, 128, 256, 512, 1024, and 2048 can be used as input numbers (error will be raised if other numbers are used).
+ 6. **Parameter `alpha`**: Weight of distance function to blend maximum difference and average difference between source and target patches. Default: `alpha = 0.5`. Input value should be between 0 and 1 (i.e. floating points). The current distance function being used is: `d = (alpha . |max(s - t)|) + ((1 - alpha) . |mean(s - t)|)` where `d` is distance value, `s` is source patch, and `t` is target patch. 
+ 7. **Parameter `bin_tresh`**: Threshold value for cutting of probability values of brain masks, if probability masks are given instead of binary masks.
+ 8. **Parameter `save_jpeg`**: Input `False` if you do not want to save JPEG visualisation files.
+ 9. **Parameter `delete_intermediary`**: Input `True` if you want to delete all intermediary files, which can save some spaces in the hard disk drive.
 
 ### 2.4. Changing the CSV Input File - List of MRI datasets to be processed
 

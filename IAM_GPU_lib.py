@@ -17,12 +17,14 @@ import skimage.filters as skifilters
 import scipy.ndimage.morphology as scimorph
 
 import math, numba, cv2, csv, gc
-import os, errno, sys
+import os, errno, sys, shutil
 
 # Turn interactive plotting off
 plt.ioff()
 
-def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],blending_weights=[0.65,0.2,0.1,0.05],num_sample=[512],save_jpeg=True):
+def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8],
+                         blending_weights=[0.65,0.2,0.1,0.05], num_sample=[512],
+                         alpha=0.5, bin_tresh=0.5, save_jpeg=True, delete_intermediary=False):
     '''
     FUNCTION'S SUMMARY:
     
@@ -38,7 +40,7 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
     
     Example (NOTE: spaces are used to make the format clearer):
     
-        /dir/MRI_DB/, MRI001, /dir/MRI_DB/MRI001/FLAIR.nii.gz,/dir/MRI_DB/MRI001/ICV.nii.gz,
+        /dir/MRI_DB/, MRI001, /dir/MRI_DB/MRI001/FLAIR.nii.gz, /dir/MRI_DB/MRI001/ICV.nii.gz,
         /dir/MRI_DB/MRI001/CSF.nii.gz, /dir/MRI_DB/MRI001/NAWM.nii.gz
     
     By default, the age maps are calculated by using four different sizes of source/target
@@ -50,7 +52,7 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
     
     This function's behavior can be set by using input parameters below.
 
-        1. output_filedir   : Path of directory for saving all results. Recommended path:
+        1. output_filedir   : Path of directory for saving all results. Format of the path:
                               "output_path/name_of_experiment"
 
         2. csv_filename     : Name of a CSV input file which contains list all files to be
@@ -62,7 +64,7 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                               of source/target patches must be in the form of python's list.
                             
         4. blending_weights : Weights used for blending age maps produced by different size of
-                              source/target patches. The weights must be the form of python's
+                              source/target patches. The weights must be in the form of python's
                               list, summed to 1, and its length must be the same as `patch_size`.
 
         5. num_sample       : A list of numbers used for randomly sampling target patches to be
@@ -78,8 +80,24 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                                    can be used as input numbers (error will be raised if other
                                    numbers are used).
 
-        6. save_jpeg        : True  --> Save all JPEG files for visualisation.
+        6. alpha            : Weight of distance function to blend maximum difference and
+                              average difference between source and target patches. Default:
+                              0.5. Input value should be between 0 and 1 (i.e. floating points).
+                              The current distance function being used is:
+                              
+                                  d = (alpha . |max(s - t)|) + ((1 - alpha) . |mean(s - t)|)
+                              
+                              where d is distance value, s is source patch, and t is target patch.
+                              
+        7. bin_tresh        : Threshold value for cutting of probability values of brain masks,
+                              if probability masks are given instead of binary masks.
+        
+        8. save_jpeg        : True  --> Save all JPEG files for visualisation.
                               False --> Do not save the JPEG files.
+                              
+        9. delete_intermediary : False --> Save all intermediary files (i.e. JPEG/.mat files).                                           
+                                 True  --> Delete all intermediary files, saving some spaces in
+                                           the hard disk drive.                                 
 
     OUTPUT:
 
@@ -95,10 +113,14 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
     5. IAM_combined_python: Contains two sub-folders:
         a. Patch: contains visualisation of age maps of each slices in JPEG files, and
         b. Combined: contains visualisation of the final output of LOTS-IAM-GPU’s computation.
-    6. IAM_GPU_nifti_python: Contains three NIfTI files (.nii.gz):
-        a. IAM_GPU_COMBINED.nii.gz: the original age map values,
-        b. IAM_GPU_GN.nii.gz: the final age map values (i.e. GN and penalty), and
-        c. IAM_GPU_GN_postprocessed.nii.gz: the final age map values plus post-processing.
+    6. IAM_GPU_nifti_python: Contains one Matlab (.mat) file and three NIfTI files (.nii.gz):
+        a. all_slice_dat.mat: processed data of all slices in Matlab file,
+        b. IAM_GPU_COMBINED.nii.gz: the original age map values,
+        c. IAM_GPU_GN.nii.gz: the final age map values (i.e. GN and penalty), and
+        d. IAM_GPU_GN_postprocessed.nii.gz: the final age map values plus post-processing.
+        
+    Note: If parameter value of `delete_intermediary` is `True`, then all folders listed above
+    will be deleted, except for folder `IAM_GPU_nifti_python` and its contents.
 
     MORE HELP:
 
@@ -106,20 +128,27 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
         https://github.com/febrianrachmadi/lots-iam-gpu
 
     VERSION (dd/mm/yyyy):
-    - 07/05/2018 by Febrian Rachmadi
+    - 08/05/2018: Add lines to cutting off probability mask and deleting intermediary folders.
+    - 07/05/2018: Initial release code.
     '''
     
+    ## Check availability of input files and output path
     if output_filedir == "" or csv_filename == "":
         raise ValueError("Please set output folder's name and CSV data filename. See: help(iam_lots_gpu)")
         return 0
     
+    ## Check compatibility between 'patch_size' and 'blending_weights'
     if len(patch_size) != len(blending_weights):
         raise ValueError("Lengths of 'patch_size' and 'blending_weights' variables are not the same. Length of 'patch_size' is " + str(len(patch_size)) + ", while 'blending_weights' is " + str(len(blending_weights)) + ".")
         return 0
     
-    #### Set number of mean samples automatically
-    ## num_samples_all = [64, 128, 256, 512, 1024, 2048]
-    ## num_mean_samples_all = [16, 32, 32, 64, 128, 128]
+    ## If intermediary files to be deleted, don't even try to save JPEGs
+    if delete_intermediary:
+        save_jpeg = False
+    
+    ''' Set number of mean samples automatically '''
+    ''' num_samples_all = [64, 128, 256, 512, 1024, 2048] '''
+    ''' num_mean_samples_all = [16, 32, 32, 64, 128, 128] '''
     num_samples_all = num_sample
     num_mean_samples_all = []
     for sample in num_samples_all:
@@ -221,7 +250,15 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                 icv_data = np.squeeze(icv_nii.get_data())
                 csf_data = np.squeeze(csf_nii.get_data())   
                 nawm_data = np.squeeze(nawm_nii.get_data()) 
-                print(' -> Loading FLAIR + ICV + CSF: OK!')
+                print(' -> Loading FLAIR + ICV + CSF: OK!')                
+                
+                ''' Make sure that all brain masks are binary masks, not probability '''
+                icv_data[icv_data > bin_tresh] = 1
+                icv_data[icv_data <= bin_tresh] = 0
+                csf_data[csf_data > bin_tresh] = 1
+                csf_data[csf_data <= bin_tresh] = 0
+                nawm_data[nawm_data > bin_tresh] = 1
+                nawm_data[nawm_data <= bin_tresh] = 0
 
                 del icv_nii, csf_nii   # Free memory
 
@@ -269,7 +306,7 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                         '''
                         mri_slice = mri_data[:,:,zz]
                         icv_slice = icv_data[:,:,zz]
-                        csf_slice = csf_data[:,:,zz]
+                        csf_slice = csf_data[:,:,zz]                        
                         csf_slice = csf_slice.astype(bool)
                         csf_slice = ~csf_slice
 
@@ -279,10 +316,18 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                         '''
                         -----------------------------------
                         KEY POINT: PRE-PROCESSING P.2 - END
-                        '''
-
+                        '''                      
+                        
+                        ## Show brain slice to be used for computation
+#                         fig, ax = plt.subplots()
+#                         cax = ax.imshow(icv_slice, cmap="jet")
+#                         cbar = fig.colorbar(cax)
+#                         fig.show()
+                        
                         # Vol distance threshold
                         vol_slice = np.count_nonzero(brain_slice) / (x_len * y_len)
+                        print('DEBUG-Patch: brain_slice - ' + str(np.count_nonzero(brain_slice)) +
+                              ', x_len * y_len - ' + str(x_len * y_len) + ', vol: ' + str(vol_slice))
 
                         # Patch's sampling number treshold
                         TRSH = 0.50
@@ -306,7 +351,7 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                         counter_x = int(x_len / patch_size[xy])
                         source_patch_len = counter_x * counter_y
                         age_values_all = np.zeros(source_patch_len)
-
+                        
                         valid = 0
                         if ((vol_slice >= 0.008 and vol_slice < 0.035) and (patch_size[xy] == 1 or patch_size[xy] == 2)) or \
                             ((vol_slice >= 0.035 and vol_slice < 0.065) and (patch_size[xy] == 1 or patch_size[xy] == 2 or \
@@ -430,7 +475,7 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                                                                       target_patches_np_cuda_all.shape[0]))
                                 cu_distances[BPGxy,TPB](sub_max_mean_result,
                                                         icv_source_flag_valid[il*loop_len:(il*loop_len)+loop_len],
-                                                        distances_result, 0.5)
+                                                        distances_result, alpha)
                                 sub_max_mean_result = 0  # Free memory
 
                                 ''' SORT '''
@@ -586,6 +631,7 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                     combined_age_map_mri_mult_normed[:,:,zz] = normed_mult_normed
 
                     ''' Save data in *.mat '''
+                    dirOutData = dirOutput + '/' + data + '/IAM_combined_python/Patch/'
                     print('Saving files: ' + dirOutData + 'c' + str(zz) + '_combined.mat\n')
                     sio.savemat(dirOutData + 'c' + str(zz) + '_combined.mat', {'slice_age_map_all':slice_age_map_all,
                                                                 'combined_age_map':normed_only,
@@ -634,7 +680,7 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                         plt.close()
 
                 ''' Save data in *.mat '''
-                sio.savemat(dirOutDataCombined + '/all_slice_dat.mat', {'combined_age_map_all_slice':combined_age_map_mri,
+                sio.savemat(dirOutDataFin + '/all_slice_dat.mat', {'combined_age_map_all_slice':combined_age_map_mri,
                                                    'mri_slice_mul_all_slice':combined_age_map_mri_mult,
                                                    'combined_age_map_mri_normed':combined_age_map_mri_normed,
                                                    'combined_age_map_mri_mult_normed':combined_age_map_mri_mult_normed})
@@ -654,6 +700,11 @@ def iam_lots_gpu_compute(output_filedir="",csv_filename="",patch_size=[1,2,4,8],
                 ---------------------------------------------------------------------
                 KEY POINT: IAM's Combination, Penalisation, and Post-processing - END
                 '''
+                
+                if delete_intermediary:
+                    shutil.rmtree(dirOutDataCom, ignore_errors=True)
+                    for xy in range(0, len(patch_size)):
+                        shutil.rmtree(dirOutput + '/' + data + '/' + str(patch_size[xy]), ignore_errors=True)
 
                 del temp
                 del mri_nii, nawm_nii
