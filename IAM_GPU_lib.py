@@ -30,18 +30,23 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
     
     Main function of the LOTS-IAM-GPU algorithm. This function produces (i.e. saving)
     age maps that indicate level of irregularity of voxels in brain FLAIR MRI. This
-    function reads a list of FLAIR MR images (NifTI), ICV mask (NifTI), CSF mask (NifTI),
-    and NAWM mask (NifTI) to produce the corresponding age maps from a CSV file. Please
-    note that this version only accept NifTI (.nii/.nii.gz) files.    
+    function reads a list of FLAIR MR image (NifTI), ICV mask (NifTI), CSF mask (NifTI),
+    NAWM mask (NifTI), and Cortical mask (NifTI) to produce the corresponding age maps
+    from a CSV file. Please note that this version only accept NifTI (.nii/.nii.gz) files.
+    
+    NOTE: NAWM and Cortical masks are optional. They will be used if they are included
+    in the CSV file.
     
     Format of the CSV input file (NOTE: spaces are used to make the format clearer):
     
-        path_to_database_folder, MRI_data_name, path_FLAIR, path_ICV, path_CSF, path_NAWM 
+        path_to_database_folder, MRI_data_name, path_FLAIR, path_ICV, path_CSF,
+        path_NAWM (optional), path_Cortical (optional) 
     
     Example (NOTE: spaces are used to make the format clearer):
     
         /dir/MRI_DB/, MRI001, /dir/MRI_DB/MRI001/FLAIR.nii.gz, /dir/MRI_DB/MRI001/ICV.nii.gz,
-        /dir/MRI_DB/MRI001/CSF.nii.gz, /dir/MRI_DB/MRI001/NAWM.nii.gz
+        /dir/MRI_DB/MRI001/CSF.nii.gz, /dir/MRI_DB/MRI001/NAWM.nii.gz (optional),
+        /dir/MRI_DB/MRI001/Cortex.nii.gz (optional)
     
     By default, the age maps are calculated by using four different sizes of source/target
     patches (i.e. 1x1, 2x2, 4x4, and 8x8) and 64 target samples. Furthermore, all intermediary
@@ -117,7 +122,8 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
         a. all_slice_dat.mat: processed data of all slices in Matlab file,
         b. IAM_GPU_COMBINED.nii.gz: the original age map values,
         c. IAM_GPU_GN.nii.gz: the final age map values (i.e. GN and penalty), and
-        d. IAM_GPU_GN_postprocessed.nii.gz: the final age map values plus post-processing.
+        d. IAM_GPU_GN_postprocessed.nii.gz: the final age map values plus post-processing
+           (only if NAWM mask is provided).
         
     Note: If parameter value of `delete_intermediary` is `True`, then all folders listed above
     will be deleted, except for folder `IAM_GPU_nifti_python` and its contents.
@@ -128,8 +134,10 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
         https://github.com/febrianrachmadi/lots-iam-gpu
 
     VERSION (dd/mm/yyyy):
-    - 08/05/2018: Add lines to cutting off probability mask and deleting intermediary folders.
-    - 07/05/2018: Initial release code.
+    - 31/05/2018b: NAWM and Cortical brain masks are now optional input (will be used if available).
+    - 31/05/2018a: Fix header information of the LOTS-IAM-GPU's result.
+    - 08/05/2018 : Add lines to cutting off probability mask and deleting intermediary folders.
+    - 07/05/2018 : Initial release code.
     '''
     
     ## Check availability of input files and output path
@@ -244,12 +252,10 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                 mri_nii = nib.load(row[2])
                 icv_nii = nib.load(row[3])
                 csf_nii = nib.load(row[4])
-                nawm_nii = nib.load(row[5])
 
                 mri_data = np.squeeze(mri_nii.get_data())
                 icv_data = np.squeeze(icv_nii.get_data())
-                csf_data = np.squeeze(csf_nii.get_data())   
-                nawm_data = np.squeeze(nawm_nii.get_data()) 
+                csf_data = np.squeeze(csf_nii.get_data())
                 print(' -> Loading FLAIR + ICV + CSF: OK!')                
                 
                 ''' Make sure that all brain masks are binary masks, not probability '''
@@ -257,10 +263,24 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                 icv_data[icv_data <= bin_tresh] = 0
                 csf_data[csf_data > bin_tresh] = 1
                 csf_data[csf_data <= bin_tresh] = 0
-                nawm_data[nawm_data > bin_tresh] = 1
-                nawm_data[nawm_data <= bin_tresh] = 0
+                
+                ''' Read and open NAWM data if available '''
+                if len(row) > 5 and row[5]:
+                    print("NAWM mask is avalilable!")
+                    nawm_nii = nib.load(row[5])
+                    nawm_data = np.squeeze(nawm_nii.get_data())
+                    nawm_data[nawm_data > bin_tresh] = 1
+                    nawm_data[nawm_data <= bin_tresh] = 0
+                
+                ''' Read and open Cortex data if available '''
+                if len(row) == 7:
+                    print("Cortex mask is avalilable!")
+                    cortex_nii = nib.load(row[6])
+                    cortex_data = np.squeeze(cortex_nii.get_data())
+                    cortex_data[cortex_data > bin_tresh] = 1
+                    cortex_data[cortex_data <= bin_tresh] = 0
 
-                del icv_nii, csf_nii   # Free memory
+                del csf_nii   # Free memory
 
                 ''' ICV Erosion '''
                 print(' -> ICV Erosion -- note: skimage library')
@@ -270,10 +290,16 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                     icv_data[:,:,ii] = skimorph.erosion(icv_data[:,:,ii],kernel)
                     kernel = kernel_sphere(11)
                     icv_data[:,:,ii] = skimorph.erosion(icv_data[:,:,ii],kernel)   
-                    nawm_data[:,:,ii] = scimorph.binary_fill_holes(nawm_data[:,:,ii])
-                    kernel = kernel_sphere(3)
-                    nawm_data[:,:,ii] = skimorph.erosion(nawm_data[:,:,ii],kernel)
-                nawm_data = nawm_data.astype(int)
+                    if len(row) > 5 and row[5]:
+                        kernel = kernel_sphere(5)
+                        nawm_data[:,:,ii] = skimorph.dilation(nawm_data[:,:,ii],kernel)
+                
+                if len(row) > 5 and row[5]:
+                    nawm_data = nawm_data.astype(bool)
+                    nawm_data = ~nawm_data
+                    nawm_data = nawm_data.astype(int)
+                    nawm_data[nawm_data > bin_tresh] = 1
+                    nawm_data[nawm_data <= bin_tresh] = 0
                 '''
                 -----------------------------------
                 KEY POINT: PRE-PROCESSING P.1 - END
@@ -306,23 +332,32 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                         '''
                         mri_slice = mri_data[:,:,zz]
                         icv_slice = icv_data[:,:,zz]
-                        csf_slice = csf_data[:,:,zz]                        
+                        csf_slice = csf_data[:,:,zz]
                         csf_slice = csf_slice.astype(bool)
                         csf_slice = ~csf_slice
 
                         mask_slice = np.multiply(csf_slice, icv_slice)
-                        mri_slice = np.int16(mri_slice)
+                        # mri_slice = np.int16(mri_slice)
                         brain_slice = np.multiply(mask_slice, mri_slice)
+                        
+                        if len(row) == 7:
+                            cortex_slice = cortex_data[:,:,zz]
+                            cortex_slice = cortex_slice.astype(bool)
+                            cortex_slice = ~cortex_slice
+                            mask_slice = np.multiply(mask_slice, cortex_slice)
+                            cortex_slice = np.int16(cortex_slice)
+                            brain_slice  = np.multiply(brain_slice, cortex_slice)
+                        
                         '''
                         -----------------------------------
                         KEY POINT: PRE-PROCESSING P.2 - END
                         '''                      
                         
                         ## Show brain slice to be used for computation
-#                         fig, ax = plt.subplots()
-#                         cax = ax.imshow(icv_slice, cmap="jet")
-#                         cbar = fig.colorbar(cax)
-#                         fig.show()
+                        # fig, ax = plt.subplots()
+                        # cax = ax.imshow(icv_slice, cmap="jet")
+                        # cbar = fig.colorbar(cax)
+                        # fig.show()
                         
                         # Vol distance threshold
                         vol_slice = np.count_nonzero(brain_slice) / (x_len * y_len)
@@ -555,7 +590,7 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                     mri_slice = mri_data[:,:,zz]
                     icv_slice = icv_data[:,:,zz]
                     icv_slice = icv_slice.astype(int)
-                    brain_slice = np.multiply(icv_slice, mri_slice)
+                    penalty_slice = mri_slice   ### PENALTY
 
                     slice_age_map_all = np.zeros((len(patch_size), x_len, y_len))        
 
@@ -622,10 +657,10 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                     combined_age_map_mri[:,:,zz] = combined_age_map     
 
                     ''' Global Normalisation - saving needed data '''
-                    combined_age_map_mri_mult[:,:,zz] = np.multiply(np.multiply(combined_age_map, mri_slice), icv_slice)      
+                    combined_age_map_mri_mult[:,:,zz] = np.multiply(np.multiply(combined_age_map, penalty_slice), icv_slice)  ### PENALTY
                     normed_only = np.divide((combined_age_map_mri[:,:,zz] - np.min(combined_age_map_mri[:,:,zz])),\
                                             (np.max(combined_age_map_mri[:,:,zz]) - np.min(combined_age_map_mri[:,:,zz])))
-                    normed_mult = np.multiply(np.multiply(normed_only, mri_slice), icv_slice)
+                    normed_mult = np.multiply(np.multiply(normed_only, penalty_slice), icv_slice)  ### PENALTY 
                     normed_mult_normed = np.divide((normed_mult - np.min(normed_mult)), \
                                             (np.max(normed_mult) - np.min(normed_mult)))
                     combined_age_map_mri_mult_normed[:,:,zz] = normed_mult_normed
@@ -649,8 +684,7 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                     for zz in range(0, mri_data.shape[2]):
                         fig2, axes2 = plt.subplots(1, 3)
                         fig2.set_size_inches(16,5)
-                        fig2.suptitle('Combined results', fontsize=16)
-
+                        
                         axes2[0].set_title('Combined and normalised')
                         im1 = axes2[0].imshow(np.rot90(combined_age_map_mri_normed[:,:,zz]), cmap="jet", vmin=0, vmax=1)
                         divider1 = make_axes_locatable(axes2[0])
@@ -684,18 +718,19 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                                                    'mri_slice_mul_all_slice':combined_age_map_mri_mult,
                                                    'combined_age_map_mri_normed':combined_age_map_mri_normed,
                                                    'combined_age_map_mri_mult_normed':combined_age_map_mri_mult_normed})
-
-                combined_age_map_mri_img = nib.Nifti1Image(combined_age_map_mri_normed, mri_nii.affine, mri_nii.header)
+                
+                combined_age_map_mri_img = nib.Nifti1Image(combined_age_map_mri_normed, mri_nii.affine)
                 nib.save(combined_age_map_mri_img, str(dirOutDataFin + '/IAM_GPU_COMBINED.nii.gz'))
 
-                combined_age_map_mri_GN_img = nib.Nifti1Image(combined_age_map_mri_mult_normed, mri_nii.affine, mri_nii.header)
+                combined_age_map_mri_GN_img = nib.Nifti1Image(combined_age_map_mri_mult_normed, mri_nii.affine)
                 nib.save(combined_age_map_mri_GN_img, str(dirOutDataFin + '/IAM_GPU_GN.nii.gz'))
 
                 ''' >>> Part 3 <<< '''
                 ''' Post-processing '''
-                combined_age_map_mri_mult_normed = np.multiply(combined_age_map_mri_mult_normed,nawm_data)
-                combined_age_map_mri_GN_img = nib.Nifti1Image(combined_age_map_mri_mult_normed, mri_nii.affine, mri_nii.header)
-                nib.save(combined_age_map_mri_GN_img, str(dirOutDataFin + '/IAM_GPU_GN_postprocessed.nii.gz'))
+                if len(row) > 5 and row[5]:
+                    combined_age_map_mri_mult_normed = np.multiply(combined_age_map_mri_mult_normed,nawm_data)
+                    combined_age_map_mri_GN_img = nib.Nifti1Image(combined_age_map_mri_mult_normed, mri_nii.affine)
+                    nib.save(combined_age_map_mri_GN_img, str(dirOutDataFin + '/IAM_GPU_GN_postprocessed.nii.gz'))
                 '''
                 ---------------------------------------------------------------------
                 KEY POINT: IAM's Combination, Penalisation, and Post-processing - END
@@ -707,9 +742,9 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                         shutil.rmtree(dirOutput + '/' + data + '/' + str(patch_size[xy]), ignore_errors=True)
 
                 del temp
-                del mri_nii, nawm_nii
+                del mri_nii, icv_nii
                 del mri_slice, icv_slice, csf_slice
-                del mri_data, icv_data, csf_data, nawm_data
+                del mri_data, icv_data, csf_data
                 del center_source_patch, icv_source_flag
                 del icv_source_flag_valid, index_mapping
                 del area_source_patch, target_patches_np   # Free memory

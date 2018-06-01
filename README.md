@@ -1,12 +1,16 @@
+
 # LOTS-IAM-GPU
 
-LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection of irregular textures of white matter hyperintensities (WMH) on brain FLAIR MRI. Unlike other recently proposed methods for doing WMH segmentation, LOTS-IAM-GPU does not need any manual labelling of the WMH. Instead, LOTS-IAM-GPU only needs brain masks to exclude non-brain tissues (e.g. ICV mask, CSF mask and NAWM mask).
+LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection method to extract irregular textures of white matter hyperintensities (WMH) on brain FLAIR MRI. Unlike other recently proposed methods for doing WMH segmentation, LOTS-IAM-GPU does not need any manual labelling of the WMH. Instead, LOTS-IAM-GPU needs brain masks to exclude non-brain tissues (e.g. ICV mask, CSF mask, NAWM mask or cortical mask).
 
 **Note:** LOTS-IAM-GPU is an abbreviation of Limited One-time Sampling Irregularity Age Map (LOTS-IAM) implemented on GPU.
 
 ### Release Notes
 Versioning Name -- dd/mm/yyyy (va.b.c):
- 1. 08/05/2018 (v0.5.3):
+ 1. 31/05/2018 (v0.6.0):
+	 * Fix header information for the LOTS-IAM-GPU's result.
+	 * NAWM and Cortical brain masks are now optional input (will be used if included in the CSV file).
+ 2. 08/05/2018 (v0.5.3):
      * Updating the initial codes.
      * Making the code more readable.
      * Add lines to cutting off probability mask and deleting intermediary folders. 
@@ -14,7 +18,9 @@ Versioning Name -- dd/mm/yyyy (va.b.c):
 ### Citations
 If you find that this work interesting and helps your work/research, please do cite our publications below.
 
- 1. M. F. Rachmadi, M. d. C. Valdés-Hernández and T. Komura, "Voxel-based irregularity age map (IAM) for brain's white matter hyperintensities in MRI," _2017 International Conference on Advanced Computer Science and Information Systems (ICACSIS)_, Bali, Indonesia, 2017, pp. 321-326.  doi: [10.1109/ICACSIS.2017.8355053](https://doi.org/10.1109/ICACSIS.2017.8355053).
+ 1. Muhammad Febrian  Rachmadi,  Maria  Valdés Hernández,  Hongwei  Li,  Ricardo  Guerrero,  Jianguo  Zhang,  Daniel  Rueckert,  Taku  Komura. **Limited One-time Sampling Irregularity Age Map (LOTS-IAM): Automatic Unsupervised Detection of Brain White Matter Abnormalities in Structural Magnetic Resonance Images**. [bioRxiv 334292](https://www.biorxiv.org/content/early/2018/05/30/334292).  doi: [10.1101/334292](https://doi.org/10.1101/334292).
+ 2. M. F. Rachmadi, M. d. C. Valdés-Hernández and T. Komura, **Automatic Irregular Texture Detection in Brain MRI without Human Supervision**, To be presented in MICCAI 2018, the 21st International Conference on Medical Image Computing and Computer Assisted Intervention. 
+ 3. M. F. Rachmadi, M. d. C. Valdés-Hernández and T. Komura, **Voxel-based irregularity age map (IAM) for brain's white matter hyperintensities in MRI**, 2017 International Conference on Advanced Computer Science and Information Systems (ICACSIS), Bali, Indonesia, 2017, pp. 321-326.  doi: [10.1109/ICACSIS.2017.8355053](https://doi.org/10.1109/ICACSIS.2017.8355053).
 
 ### Table of Contents
  - [Introduction](https://github.com/febrianrachmadi/lots-iam-gpu#lots-iam-gpu)
@@ -34,7 +40,8 @@ If you find that this work interesting and helps your work/research, please do c
 	 - [2.5. Main Function of the LOTS-IAM-GPU](https://github.com/febrianrachmadi/lots-iam-gpu#25-main-function-of-the-lots-iam-gpu)
  - [3. How the LOTS-IAM-GPU works](https://github.com/febrianrachmadi/lots-iam-gpu#3-how-the-lots-iam-gpu-works)
  - [4. Expected Output](https://github.com/febrianrachmadi/lots-iam-gpu#4-expected-output)
- - [5. Conclusion](https://github.com/febrianrachmadi/lots-iam-gpu#5-conclusion)
+ - [5. Speed vs. Quality](https://github.com/febrianrachmadi/lots-iam-gpu#5-speed-vs-quality)
+ - [6. Conclusion](https://github.com/febrianrachmadi/lots-iam-gpu#6-conclusion)
  - [Authors](https://github.com/febrianrachmadi/lots-iam-gpu#authors)
  - [License](https://github.com/febrianrachmadi/lots-iam-gpu#license)
  - [Acknowledgments](https://github.com/febrianrachmadi/lots-iam-gpu#acknowledgments)
@@ -170,7 +177,7 @@ Inside the experiment's folder, each patient/MRI data will have its own folder. 
 6. **IAM_GPU_nifti_python**: Contains three NIfTI files (`.nii.gz`):
     * `IAM_GPU_COMBINED.nii.gz`: the original age map values, 
     * `IAM_GPU_GN.nii.gz`: the final age map values (i.e. global normalisation and penalty), and
-    * `IAM_GPU_GN_postprocessed.nii.gz`: the final age map values plus post-processing.
+    * `IAM_GPU_GN_postprocessed.nii.gz`: the final age map values plus post-processing (only if NAWM mask is provided).
 
 ### 2.3. Changing Software's Parameters
 
@@ -237,16 +244,17 @@ User can change these parameters via [`iam_params.py`](https://github.com/febria
 
 A CSV file is used to list all input data to be processed by LOTS-IAM-GPU method. The default name of the CSV file is [`IAM_GPU_pipeline_test_v2.csv`](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv). Feel free to edit or make a new CSV input file as long as following the convention below. If you make a new CSV input file, do not forget to change software's input parameters (see [Section 2.3](https://github.com/febrianrachmadi/lots-iam-gpu#23-changing-softwares-parameters)).
 
-| Path to MRI's folder | Names of MRI data | Path to FLAIR NIfTI files | Path to ICV NIfTI files | Path to CSF NIfTI files | Path to NAWM NIfTI files |
-|:--------------------:|:-------------:|:--------------------:|:------------------:|:------------------:|:-------------------:|
-| /dir/.../MRIdatabase/ | MRI001        | /dir/.../MRIdatabase/MRI001/FLAIR.nii.gz | /dir/.../MRIdatabase/MRI001/ICV.nii.gz | /dir/.../MRIdatabase/MRI001/CSF.nii.gz | /dir/.../MRIdatabase/MRI001/NAWM.nii.gz |
-| /dir/.../MRIdatabase/ | MRI001        | /dir/.../MRIdatabase/MRI002/FLAIR.nii.gz | /dir/.../MRIdatabase/MRI002/ICV.nii.gz | /dir/.../MRIdatabase/MRI002/CSF.nii.gz | /dir/.../MRIdatabase/MRI002/NAWM.nii.gz |
-| ...    | ...        | ... | ... | ... | ... |
-| /dir/.../MRIdatabase/ | MRInnn        | /dir/.../MRIdatabase/MRInnn/FLAIR.nii.gz | /dir/.../MRIdatabase/MRInnn/ICV.nii.gz | /dir/.../MRIdatabase/MRInnn/CSF.nii.gz | /dir/.../MRIdatabase/MRInnn/NAWM.nii.gz |
+| Path to MRI's folder | Names of MRI data | Path to FLAIR NIfTI files | Path to ICV NIfTI files | Path to CSF NIfTI files | Path to NAWM NIfTI files (optional) | Path to Cortical NIfTI files (optional) |
+|:--------------------:|:-------------:|:--------------------:|:------------------:|:------------------:|:-------------------:|:-------------------:|
+| /dir/.../MRIdatabase/ | MRI001        | /dir/.../MRIdatabase/MRI001/FLAIR.nii.gz | /dir/.../MRIdatabase/MRI001/ICV.nii.gz | /dir/.../MRIdatabase/MRI001/CSF.nii.gz | /dir/.../MRIdatabase/MRI001/NAWM.nii.gz | /dir/.../MRIdatabase/MRI001/Cortex.nii.gz |
+| /dir/.../MRIdatabase/ | MRI001        | /dir/.../MRIdatabase/MRI002/FLAIR.nii.gz | /dir/.../MRIdatabase/MRI002/ICV.nii.gz | /dir/.../MRIdatabase/MRI002/CSF.nii.gz | /dir/.../MRIdatabase/MRI002/NAWM.nii.gz | /dir/.../MRIdatabase/MRI002/Cortex.nii.gz |
+| ...    | ...        | ... | ... | ... | ... | ... |
+| /dir/.../MRIdatabase/ | MRInnn        | /dir/.../MRIdatabase/MRInnn/FLAIR.nii.gz | /dir/.../MRIdatabase/MRInnn/ICV.nii.gz | /dir/.../MRIdatabase/MRInnn/CSF.nii.gz | /dir/.../MRIdatabase/MRInnn/NAWM.nii.gz | /dir/.../MRIdatabase/MRInnn/Cortex.nii.gz |
 
 **Important notes on the CSV input file:**
 1. You **MUST NOT** include the first line of example above ([please see the actual example of the CSV file](https://github.com/febrianrachmadi/lots-iam-gpu/blob/master/IAM_GPU_pipeline_test_v2.csv)).
 2. Currently, only NIfTI files that could be processed by the LOTS-IAM-GPU.
+3. Remember, if NAWM and/or cortical masks **are not provided** in the CSV file, any operation involving these masks **will not be done** (i.e. pre-processing for cortical mask and post-processing for NAWM mask).
 
 ### 2.5. Main Function of the LOTS-IAM-GPU
 
@@ -263,7 +271,7 @@ The key idea of the LOTS-IAM is treating hyperintensities of the FLAIR MRI as ir
 
 To understand LOTS-IAM's computation, one should understand two different types of patches, which are *source patches* and *target patches*. *Source patches* are the non-overlapping grid-patches of brain tissues (i.e. inside intracranial volume (ICV) and outside cerebrospinal fluid (CSF) brain masks). Whereas, *target patches* are randomly sampled patches from all possible overlapping patches which come from the same slice (also need to be inside ICV mask and outside CSF mask). *Age value* is then calculated between ***all** source patches* and ***some of the** target patches* by using a distance function to create *age maps* of all slices of MR image. 
 
-Because of the nature of LOTS-IAM's computation, hundreds (if not thousands) of source patches need to be compared/calculated with thousands of target patches. Thus, implementation of LOTS-IAM on GPU is needed to speed up its computation. Based on our experiments, implementation of LOTS-IAM on GPU speeds up the computation by over 13.5 times without having any drawback on the quality of the results. The summary and flow of the LOTS-IAM-GPU's computation can be seen in Figure 1 below. If you are interested to learn more about the LOTS-IAM-GPU, feel free to read extended explanation and experiments of the method in our publications.
+Because of the nature of LOTS-IAM's computation, hundreds (if not thousands) of source patches need to be compared/calculated with thousands of target patches. Thus, implementation of LOTS-IAM on GPU is needed to speed up its computation. Based on our experiments, implementation of LOTS-IAM on GPU speeds up the computation by over 13.5 times without having any drawback on the quality of the results. The summary and flow of the LOTS-IAM-GPU's computation can be seen in Figure 1 below. If you are interested to learn more about the LOTS-IAM-GPU, feel free to read extended explanation and experiments of the method in our [publications](https://github.com/febrianrachmadi/lots-iam-gpu#citations).
 
 ![alt text](documentation/LOTS-IAM-Illustration.png "LOTS-IAM_GPU Method in Summary")
 Figure 1: Flow of one slice of MRI data processed by LOTS-IAM-GPU.
@@ -275,7 +283,14 @@ The biggest different between LOTS-IAM-GPU and other WMH segmentation methods ar
 ![alt text](documentation/iam-vs-others-vis.png "Visualisation of LOTS-IAM vs. others")
 Figure 2: Visualisation of probabilistic values of WMH produced by LOTS-IAM compare to other methods, which are the [DeepMedic](https://github.com/Kamnitsask/deepmedic), U-Net based deep neural networks, [LST-LGA](http://www.applied-statistics.de/lst.html), and minimum variance quantization with 100 levels (MVQ-100). The DeepMedic and U-Net are supervised deep neural networks methods whereas LOTS-IAM(-GPU), LST-LGA, and MVQ-100 are unsupervised methods.
 
-### 5. Conclusion
+### 5. Speed vs. Quality
+
+The code is implemented so that any user can change the number of target patch samples used for age map calculation in the LOTS-IAM-GPU. The relation between number of target patch samples and speed/quality of the results is depicted in the Figure 3 below. The means of DSC depicted below were produced on 60 MRI scans (manually labelled by expert) from ADNI database.
+
+![alt text](documentation/speed-vs-quality-iam-lots-gpu.png "Speed  versus quality of different number of target patch samples used in the LOTS-IAM-GPU.")
+Figure 3: Speed  versus quality of different number of target patch samples used in the LOTS-IAM-GPU.
+
+### 6. Conclusion
 
 In recent years, the development of unsupervised detection methods of hyperintensities in brain MRI is slower than the supervised methods, especially after the usage of *state-of-the-art* deep neural networks methods in biomedical image processing and analysis. However, we believe that unsupervised methods have its own place in biomedical image analysis because its independency. Whilst  supervised methods depend on the quality and amount of expert labelled data similar to the sample to be used, LOTS-IAM-GPU and other unuspervised methods do not need training and is independent from imaging protocols and sample characteristics.
 
