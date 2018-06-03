@@ -19,7 +19,7 @@ Versioning Name -- dd/mm/yyyy (va.b.c):
 If you find that this work interesting and helps your work/research, please do cite our publications below.
 
  1. Muhammad Febrian  Rachmadi,  Maria  Valdés Hernández,  Hongwei  Li,  Ricardo  Guerrero,  Jianguo  Zhang,  Daniel  Rueckert,  Taku  Komura. **Limited One-time Sampling Irregularity Age Map (LOTS-IAM): Automatic Unsupervised Detection of Brain White Matter Abnormalities in Structural Magnetic Resonance Images**. [bioRxiv 334292](https://www.biorxiv.org/content/early/2018/05/30/334292).  doi: [10.1101/334292](https://doi.org/10.1101/334292).
- 2. M. F. Rachmadi, M. d. C. Valdés-Hernández and T. Komura, **Automatic Irregular Texture Detection in Brain MRI without Human Supervision**, To be presented in MICCAI 2018, the 21st International Conference on Medical Image Computing and Computer Assisted Intervention. 
+ 2. M. F. Rachmadi, M. d. C. Valdés-Hernández and T. Komura, **Automatic Irregular Texture Detection in Brain MRI without Human Supervision**, To be presented in MICCAI 2018, the 21st International Conference on Medical Image Computing and Computer Assisted Intervention. [[PDF-accepted-draft](http://homepages.inf.ed.ac.uk/tkomura/research_dir/miccai2018.pdf)] 
  3. M. F. Rachmadi, M. d. C. Valdés-Hernández and T. Komura, **Voxel-based irregularity age map (IAM) for brain's white matter hyperintensities in MRI**, 2017 International Conference on Advanced Computer Science and Information Systems (ICACSIS), Bali, Indonesia, 2017, pp. 321-326.  doi: [10.1109/ICACSIS.2017.8355053](https://doi.org/10.1109/ICACSIS.2017.8355053).
 
 ### Table of Contents
