@@ -7,10 +7,13 @@ LOTS-IAM-GPU is a fast, fully-automatic, and unsupervised detection method to ex
 
 ### Release Notes
 Versioning Name -- dd/mm/yyyy (va.b.c):
- 1. 31/05/2018 (v0.6.0):
+ 1. 31/07/2018 (v0.6.5):
+	 * Fix NAWM operation bugs.
+	 * NAWM mask now can be used either at pre- or post-processing.
+ 2. 31/05/2018 (v0.6.0):
 	 * Fix header information for the LOTS-IAM-GPU's result.
 	 * NAWM and Cortical brain masks are now optional input (will be used if included in the CSV file).
- 2. 08/05/2018 (v0.5.3):
+ 3. 08/05/2018 (v0.5.3):
      * Updating the initial codes.
      * Making the code more readable.
      * Add lines to cutting off probability mask and deleting intermediary folders. 
@@ -213,6 +216,11 @@ num_samples_all = [128, 256]
 ## and target patches. Default: alpha=0.5. Input value should be between 0 and 1 (i.e. floating).
 alpha = 0.5
 
+## Use NAWM mask (if available) at pre-processing rather than at post-processing
+## True: Use NAWM at pre-processing
+## False (default): Use NAWM at post-processing
+nawm_preprocessing = False
+
 ## Threshold value for cutting of probability values of brain masks, if probability masks
 ## are given instead of binary masks.
 bin_tresh = 0.5
@@ -239,6 +247,7 @@ User can change these parameters via [`iam_params.py`](https://github.com/febria
  7. **Parameter `bin_tresh`**: Threshold value for cutting of probability values of brain masks, if probability masks are given instead of binary masks.
  8. **Parameter `save_jpeg`**: Input `False` if you do not want to save JPEG visualisation files.
  9. **Parameter `delete_intermediary`**: Input `True` if you want to delete all intermediary files, which can save some spaces in the hard disk drive.
+ 10. **Parameter `nawm_preprocessing` (added at v0.6.5)**: Input `True` if you want to use NAWM mask at pre-processing instead of post-processing.
 
 ### 2.4. Changing the CSV Input File - List of MRI datasets to be processed
 
@@ -313,6 +322,8 @@ This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICE
 * [School of Informatics, The University of Edinburgh](https://www.ed.ac.uk/informatics)
 * [Centre for Clinical Brain Sciences, The University of Edinburgh](https://www.ed.ac.uk/clinical-brain-sciences)
 * [LPDP | Indonesia Endowment Fund for Education - Minsitry of Finance, Republic of Indonesia](https://www.lpdp.kemenkeu.go.id/)
+
+Funds from Indonesia Endowment Fund for Education (LPDP) of Ministry of Finance, Republic of Indonesia and Row Fogo Charitable Trust (Grant No. BRO-D.FID3668413) (MCVH) are gratefully acknowledged.
 
 ## References
 

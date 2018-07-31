@@ -24,7 +24,8 @@ plt.ioff()
 
 def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8],
                          blending_weights=[0.65,0.2,0.1,0.05], num_sample=[512],
-                         alpha=0.5, bin_tresh=0.5, save_jpeg=True, delete_intermediary=False):
+                         alpha=0.5, bin_tresh=0.5, save_jpeg=True, delete_intermediary=False,
+                         nawm_preprocessing=False):
     '''
     FUNCTION'S SUMMARY:
     
@@ -265,20 +266,28 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                 csf_data[csf_data <= bin_tresh] = 0
                 
                 ''' Read and open NAWM data if available '''
-                if len(row) > 5 and row[5]:
-                    print("NAWM mask is avalilable!")
+                nawm_available = len(row) > 5 and row[5]
+                if nawm_available:
+                    print(" -> NAWM mask is avalilable!")
+                    print(" --> " + row[5])
                     nawm_nii = nib.load(row[5])
                     nawm_data = np.squeeze(nawm_nii.get_data())
                     nawm_data[nawm_data > bin_tresh] = 1
                     nawm_data[nawm_data <= bin_tresh] = 0
+                else:
+                    print(" -> Cortex mask is NOT avalilable!")
                 
                 ''' Read and open Cortex data if available '''
-                if len(row) == 7:
-                    print("Cortex mask is avalilable!")
+                cortex_available = len(row) > 6 and row[6]
+                if cortex_available:
+                    print(" -> Cortex mask is avalilable!")
+                    print(" --> " + row[6])
                     cortex_nii = nib.load(row[6])
                     cortex_data = np.squeeze(cortex_nii.get_data())
                     cortex_data[cortex_data > bin_tresh] = 1
                     cortex_data[cortex_data <= bin_tresh] = 0
+                else:
+                    print(" -> Cortex mask is NOT avalilable!")
 
                 del csf_nii   # Free memory
 
@@ -290,16 +299,11 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                     icv_data[:,:,ii] = skimorph.erosion(icv_data[:,:,ii],kernel)
                     kernel = kernel_sphere(11)
                     icv_data[:,:,ii] = skimorph.erosion(icv_data[:,:,ii],kernel)   
-                    if len(row) > 5 and row[5]:
-                        kernel = kernel_sphere(5)
-                        nawm_data[:,:,ii] = skimorph.dilation(nawm_data[:,:,ii],kernel)
-                
-                if len(row) > 5 and row[5]:
-                    nawm_data = nawm_data.astype(bool)
-                    nawm_data = ~nawm_data
-                    nawm_data = nawm_data.astype(int)
-                    nawm_data[nawm_data > bin_tresh] = 1
-                    nawm_data[nawm_data <= bin_tresh] = 0
+                    if nawm_available:
+                        kernel = kernel_sphere(3)
+                        nawm_data[:,:,ii] = scimorph.binary_fill_holes(nawm_data[:,:,ii])
+                        nawm_data[:,:,ii] = skimorph.erosion(nawm_data[:,:,ii],kernel)
+                        
                 '''
                 -----------------------------------
                 KEY POINT: PRE-PROCESSING P.1 - END
@@ -337,10 +341,17 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
                         csf_slice = ~csf_slice
 
                         mask_slice = np.multiply(csf_slice, icv_slice)
-                        # mri_slice = np.int16(mri_slice)
                         brain_slice = np.multiply(mask_slice, mri_slice)
                         
-                        if len(row) == 7:
+                        if nawm_available and nawm_preprocessing:
+                            print("NAWM pre-processing..")
+                            nawm_slice = nawm_data[:,:,zz]
+                            nawm_slice = nawm_slice.astype(bool)
+                            mask_slice = np.multiply(mask_slice, nawm_slice)
+                            nawm_slice = np.int16(nawm_slice)
+                            brain_slice  = np.multiply(brain_slice, nawm_slice)
+                        
+                        if cortex_available:
                             cortex_slice = cortex_data[:,:,zz]
                             cortex_slice = cortex_slice.astype(bool)
                             cortex_slice = ~cortex_slice
@@ -727,7 +738,7 @@ def iam_lots_gpu_compute(output_filedir="", csv_filename="", patch_size=[1,2,4,8
 
                 ''' >>> Part 3 <<< '''
                 ''' Post-processing '''
-                if len(row) > 5 and row[5]:
+                if nawm_available and ~nawm_preprocessing:
                     combined_age_map_mri_mult_normed = np.multiply(combined_age_map_mri_mult_normed,nawm_data)
                     combined_age_map_mri_GN_img = nib.Nifti1Image(combined_age_map_mri_mult_normed, mri_nii.affine)
                     nib.save(combined_age_map_mri_GN_img, str(dirOutDataFin + '/IAM_GPU_GN_postprocessed.nii.gz'))
