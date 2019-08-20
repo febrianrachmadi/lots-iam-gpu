@@ -1,4 +1,4 @@
-name: IAM_GPU_LINUX_jynb
+name: lots_iam
 channels:
   - defaults
 dependencies:

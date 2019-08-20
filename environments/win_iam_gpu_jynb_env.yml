@@ -1,4 +1,4 @@
-name: IAM_GPU_WIN
+name: lots_iam
 channels:
   - menpo
   - quantstack
