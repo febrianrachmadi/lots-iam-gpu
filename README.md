@@ -300,16 +300,18 @@ Figure 2: Visualisation of probabilistic values of WMH produced by LOTS-IM compa
 
 As showed in Figure 2, irregularity map (IM) has an important characteristic where it retains more texture information than probability map or binary mask of WMH. This is very helpful for simulating the regression and progression of WMH (see figure below). Please see the paper for full explanation of the proposed algorithm and discussion at [here](https://doi.org/10.1007/978-3-030-00320-3_11).
 
-![alt text](documentation/941_S_4100_2011_20_reg_iam_flair.gif "Fig.3: Regression of WMH using IAM.")
+![alt text](documentation/941_S_4100_2011_20_reg_iam_flair.gif "Figure 3: Simulation of WMH regression using irregularity map (IM).")
+Figure 3: Simulation of WMH regression using irregularity map.
 
-![alt text](documentation/941_S_4100_2011_20_prog_iam_flair.gif "Fig.4: Progression of WMH using IAM.")
+![alt text](documentation/941_S_4100_2011_20_prog_iam_flair.gif "Figure 4: Simulation of WMH progression using irregularity map (IM).")
+Figure 4: Simulation of WMH progression using irregularity map.
 
 ### 5. Speed vs. Quality
 
-The code is implemented so that any user can change the number of target patch samples used for irregularity map calculation in the LOTS-IM-GPU. The relation between number of target patch samples and speed/quality of the results is depicted in the Figure 3 below. The means of DSC depicted below were produced on 60 MRI scans (manually labelled by expert) from ADNI database.
+The code is implemented so that any user can change the number of target patch samples used for irregularity map calculation in the LOTS-IM-GPU. The relation between number of target patch samples and speed/quality of the results is depicted in the Figure 5 below. The means of DSC depicted below were produced on 60 MRI scans (manually labelled by expert) from ADNI database.
 
 ![alt text](documentation/speed-vs-quality-iam-lots-gpu.png "Speed  versus quality of different number of target patch samples used in the LOTS-IAM-GPU.")
-Figure 3: Speed  versus quality of different number of target patch samples used in the LOTS-IM-GPU.
+Figure 5: Speed  versus quality of different number of target patch samples used in the LOTS-IM-GPU.
 
 ### 6. Conclusion
 
