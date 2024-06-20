@@ -65,32 +65,37 @@ These instructions will get you a copy of the software up and running on your lo
 https://github.com/febrianrachmadi/lots-iam-gpu
 ```
 
-### 1.1. Required Libraries
+### 1.1 Docker Image [RECOMMENDED]
 
-The project is written in Python3. Below is the list of minimum prerequisites for running the project. Please note that versions of prerequisties are listed to inform user of the tested environment.
+The easiest way to use the LOTS-IM method is to get a Docker image and run it as a Docker container. You can get the Docker image using the following link: `https://drive.google.com/file/d/15QIDsjSb1bYLzbWAwcc5JcYlc3UFhAR8/view?usp=sharing`. The Docker image for this project is written in Python3. Below is the libraries installed in the Docker image, in case you need it.
 
 - Python (3.5/3.6)
+- pip (20.1)
+- [llvmlite (0.22.0)](https://pypi.org/project/llvmlite/0.22.0/)
 - [Matplotlib (2.2.2)](https://matplotlib.org/): Required to save outputs in JPEG files for visualisation.
 - [Numba (0.37.0)](https://numba.pydata.org/): Required for GPU parallel computing.
+- [NumPy (1.19)](http://www.numpy.org/): General purpose array-processing package.
 - [OpenCV (3.3.1)](https://docs.opencv.org/3.0-beta/index.html): Required for computer vision operations.
-- [scikit-image (0.13.1)](http://scikit-image.org/): Required for computer vision operations.
+- [scikit-image (0.14.5)](http://scikit-image.org/): Required for computer vision operations.
+- scikit-learn (0.21.3)
+- scipy (1.4.1)
 - [NiBabel (2.2.1)](http://nipy.org/nibabel/): Required for loading and writing NIFTI files.
-- [NumPy (1.14.2)](http://www.numpy.org/): General purpose array-processing package.
+- Pandas (0.23.4)
 - [Cuda Toolkit](https://developer.nvidia.com/cuda-downloads): CUDA Toolkit for parallel programming.
 
 ### 1.2. GPU Processing
 
 First of all, you should make sure that Nvidia's CUDA Toolkit has been installed in your local machine. Please install [Nvidia's CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) compatible with your GPU and OS.
 
-### 1.3. Installing Required Libraries
+### 1.3. Installing on Your Machine
 
 You have two options to install the project on your machine:
 1. Installing and running LOTS-IAM-GPU on top of virtual environment (tested on Ubuntu 16.04/Windows) [[Section 1.3.1](https://github.com/febrianrachmadi/lots-iam-gpu#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)].
 2. Installing and running LOTS-IAM-GPU directly on your local machine (tested on Ubuntu 16.04) [[Section 1.3.2](https://github.com/febrianrachmadi/lots-iam-gpu#132-installing-on-your-local-machine-linux)].
 
-**Note:** Please make sure that Python3 has been installed in your local machine before continuing (recommended).
+**Note:** Please make sure that Python3 has been installed in your local machine before continuing.
 
-#### 1.3.1. Installing on virtual environment of conda (Linux Ubuntu 16.04/Windows) [RECOMMENDED]
+#### 1.3.1. Installing on virtual environment
 
 We provide `.yml` files in [environments](https://github.com/iboele/lots-iam-gpu/tree/master/environments) folder which can be used to activate a virtual environment for running LOTS-IAM-GPU in Ubuntu-16.04/Windows. This is very useful especially if you want to run the software on Windows OS.
 
@@ -124,7 +129,7 @@ By activating the provided environment, you should be able to run the project (i
 
 If you need more help on Anaconda Navigator or miniconda, please see [**Anaconda Navigator**](https://docs.anaconda.com/anaconda/navigator/) or [**miniconda**](https://conda.io/docs/index.html).
 
-#### 1.3.2. Installing on your local machine (Linux)
+#### 1.3.2. Installing on your local machine
 
 If you would like to run the LOTS-IAM-GPU on your machine, you could easily do that by installing all of required libraries on your local machine. If you are not sure how to do it, please follow instructions below.
 
