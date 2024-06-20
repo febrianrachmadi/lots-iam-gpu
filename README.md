@@ -10,7 +10,8 @@ LOTS-IM-GPU is a fast, fully-automatic, and unsupervised detection method to ext
 
 ### Release Notes
 Versioning Name -- dd/mm/yyyy (va.b.c):
- 1. 05/09/2019 (v1.0.0):
+ 1. 20/06/2024 (v1.0.1): Addded a Docker image.
+ 2. 05/09/2019 (v1.0.0):
 	 * Moved the pre-processing phase out from the main LOTS-IM function.
 	 * Now, the function can do either 2D or 3D computation, set by an input parameter (using `set_3d`).
  3. 05/07/2019 (v0.7.0):
@@ -38,11 +39,9 @@ If you find that this work interesting and helps your work/research, please do c
 	 - [Release Notes](https://github.com/febrianrachmadi/lots-iam-gpu#release-notes)
 	 - [Citations](https://github.com/febrianrachmadi/lots-iam-gpu#citations)
  - [1. Installation](https://github.com/febrianrachmadi/lots-iam-gpu#1-installation)
-	 - [1.1. Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu#11-required-libraries)
+	 - [1.1. Docker Image](https://github.com/febrianrachmadi/lots-iam-gpu#11-docker-image)
 	 - [1.2. GPU Processing](https://github.com/febrianrachmadi/lots-iam-gpu#12-gpu-processing)
-	 - [1.3. Installing Required Libraries](https://github.com/febrianrachmadi/lots-iam-gpu#13-installing-required-libraries)
-		 - [1.3.1. Installing on virtual environment of conda (Linux Ubuntu 16.04/Windows) [RECOMMENDED]](https://github.com/febrianrachmadi/lots-iam-gpu#131-installing-on-virtual-environment-of-conda-linux-ubuntu-1604windows-recommended)
-		 - [1.3.2. Installing on your local machine (Linux)](https://github.com/febrianrachmadi/lots-iam-gpu#132-installing-on-your-local-machine-linux)
+	 - [1.3. Installing on Your Machine](https://github.com/febrianrachmadi/lots-iam-gpu#13-installing-on-your-machine)
  - [2. Usage](https://github.com/febrianrachmadi/lots-iam-gpu#2-usage)
 	 - [2.1. Running the Software](https://github.com/febrianrachmadi/lots-iam-gpu#21-running-the-software)
 	 - [2.2. Output](https://github.com/febrianrachmadi/lots-iam-gpu#22-output)
@@ -65,7 +64,7 @@ These instructions will get you a copy of the software up and running on your lo
 https://github.com/febrianrachmadi/lots-iam-gpu
 ```
 
-### 1.1 Docker Image [RECOMMENDED]
+### 1.1. Docker Image [RECOMMENDED]
 
 The easiest way to use the LOTS-IM method is to get a Docker image and run it as a Docker container. You can get the Docker image using the following link: `https://drive.google.com/file/d/15QIDsjSb1bYLzbWAwcc5JcYlc3UFhAR8/view?usp=sharing`. The Docker image for this project is written in Python3. Below is the libraries installed in the Docker image, in case you need it.
 
