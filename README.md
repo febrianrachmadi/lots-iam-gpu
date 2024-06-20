@@ -66,7 +66,7 @@ https://github.com/febrianrachmadi/lots-iam-gpu
 
 ### 1.1. Docker Image [RECOMMENDED]
 
-The easiest way to use the LOTS-IM method is to get a Docker image and run it as a Docker container. You can get the Docker image using the following link: `https://drive.google.com/file/d/15QIDsjSb1bYLzbWAwcc5JcYlc3UFhAR8/view?usp=sharing`. The Docker image for this project is written in Python3. Below is the libraries installed in the Docker image, in case you need it.
+The easiest way to use the LOTS-IM method is to get a Docker image and run it as a Docker container. You can get the Docker image using the this [link](https://drive.google.com/file/d/15QIDsjSb1bYLzbWAwcc5JcYlc3UFhAR8/view?usp=sharing).  The Docker image for this project is written in Python3. Below is the libraries installed in the Docker image, in case you need it.
 
 - Python (3.5/3.6)
 - pip (20.1)
