@@ -248,7 +248,7 @@ User can change these parameters via [`lots_im_parameters.py`](https://github.co
 **Important notes:** Some more explanations regarding of changeable parameters.
  1. **Parameter `output_filedir`**: Its value should follow this convention: `../output_path`/`name_of_experiment`.
  2.  **Parameter `set_3d`**: Its value controls the setting of LOTS-IM's calculation (i.e., 2D (slice) or 3D (volume)). The default is `True`.
- 3. **Parameter `patch_size`**: Its value controls the sizes of source/target patches used in the computation. The default value is a python list `[1,2,3,4]` i.e. translated to `1 x 1`, `2 x 2`, `4 x 4`, and `8 x 8` source/target patches. If user input only one number (e.g. `[2]`), then LOTS-IM-GPU will do computation by using `2 x 2` source/target patch only. **NOTE**:  Feel free to use different number of source/target patches, but other than these four numbers, it is not guaranteed that the software will finish the computation without any trouble.
+ 3. **Parameter `patch_size`**: Its value controls the sizes of source/target patches used in the computation. The default value is a python list `[1,2,4,8]` i.e. translated to `1 x 1`, `2 x 2`, `4 x 4`, and `8 x 8` source/target patches. If user input only one number (e.g. `[2]`), then LOTS-IM-GPU will do computation by using `2 x 2` source/target patch only. **NOTE**:  Feel free to use different number of source/target patches, but other than these four numbers, it is not guaranteed that the software will finish the computation without any trouble.
  4. **Parameter `blending_weights`**: Its value controls blending weights used for blending all irregularity maps produced by different size of source/target patches. The weights must be the form of python's list, summed to 1, and its length must be the same as `patch_size` variable.
  5. **Parameter** `num_samples_all`: A list of numbers used for randomly sampling target patches to be used in the calculation of LOTS-IM-GPU. Some fixed and limited numbers of target patches are available to be used by user, which are 64, 128, 256, 512, 1024, 2048. These numbers are chosen to make GPU's memory management easier. **Some important notes regarding of this parameter are**:
     * Smaller number will make computation faster.
@@ -347,4 +347,3 @@ Funds from Indonesia Endowment Fund for Education (LPDP) of Ministry of Finance,
 ## References
 
  1. Bellini, R., Kleiman, Y., & Cohen-Or, D. (2016). Time-varying weathering in texture space. _ACM Transactions on Graphics (TOG)_, _35_(4), 141.
- 
